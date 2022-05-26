@@ -9,7 +9,7 @@ const IndexPage = () => (
     <Layout>
         <Seo title="Home"/>
         <Link to={"page-2"}>Page 2</Link> <br />
-        <Link to={"using-dsg"}>Using dsg</Link>
+        <Link to={"using-dsg"}>Using dsg </Link>
     </Layout>
 )
 
