@@ -65,6 +65,7 @@ const getUserFromUserUUID = async (userUUID) => {
 
 const startBooking = async (carId, userUUID) => {
 
+    // To be sure stop booking if any
     await stopBooking(userUUID)
 
     // Get user from uid and update field
