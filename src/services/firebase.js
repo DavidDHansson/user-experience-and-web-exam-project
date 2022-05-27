@@ -20,18 +20,19 @@ const signIn = async () => {
     const googleProvider = new GoogleAuthProvider();
 
     try {
-        const res = await signInWithPopup(auth, googleProvider);
-        const user = res.user;
-        const q = query(collection(db, "users"), where("uid", "==", user.uid));
-        const docs = await getDocs(q);
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        const query = query(collection(db, "users"), where("uid", "==", user.uid));
+        const docs = await getDocs(query);
 
         if (docs.docs.length === 0) {
             await addDoc(collection(db, "users"), {
                 uid: user.uid,
                 name: user.displayName,
                 authProvider: "google",
-                email: user.email
-                // TODO: add necesarry fields here for car rent
+                email: user.email,
+                icon: user.photoURL,
+                currentlyRenting: null
             });
         }
     } catch (err) {
