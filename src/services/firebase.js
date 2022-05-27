@@ -107,9 +107,11 @@ const stopBooking = async (userUUID) => {
         where("user", "==", user.id),
         where("isBookingActive", "==", true));
     const historyDocs = await getDocs(historyQuery);
-    const historyId =  historyDocs.docs[0].id;
-    const historyRef = doc(db, "history", historyId);
-    await setDoc(historyRef, {isBookingActive: false, price: 100, endTime: serverTimestamp()}, {merge: true})
+
+    historyDocs.forEach(historyDoc => {
+        const historyRef = doc(db, "history", historyDoc.id);
+        setDoc(historyRef, {isBookingActive: false, price: 100, endTime: serverTimestamp()}, {merge: true})
+    });
 
 }
 
