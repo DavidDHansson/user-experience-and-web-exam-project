@@ -3,9 +3,10 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import SwipeButton from "./../components/SwipeButton"
 import { SignInButton, LogOutButton } from "./../components/authButtons"
-import { auth, startBooking, stopBooking } from "./../services/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, startBooking, stopBooking } from "./../services/firebase"
+import { useAuthState } from "react-firebase-hooks/auth"
 
 const IndexPage = () => {
 
@@ -26,6 +27,8 @@ const IndexPage = () => {
             <Link to={"page-2"}>Page 2</Link> <br />
             <Link to={"using-dsg"}>Using dsg</Link>
 
+            <br />
+            <SwipeButton text={"Bestil bil"} onSuccess={() => console.log("tes")}/>
             <br />
             <div>
                 {(loading || error) ? <p>Loading...</p> : <SignInButton />}
