@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, query, where, addDoc, setDoc, doc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, query, where, addDoc, setDoc, doc, serverTimestamp, orderBy } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
 
 const firebaseConfig = {
@@ -65,6 +65,8 @@ const getUserFromUserUUID = async (userUUID) => {
 
 const startBooking = async (carId, userUUID) => {
 
+    await stopBooking(userUUID)
+
     // Get user from uid and update field
     const user = await getUserFromUserUUID(userUUID);
     const userRef = doc(db, "users", user.id)
@@ -74,21 +76,40 @@ const startBooking = async (carId, userUUID) => {
     const carRef = doc(db, "cars", carId)
     await setDoc(carRef, { currentlyRentedBy: user.id, isBooked: true }, { merge: true })
 
+    // Add history field
+    await addDoc(collection(db, "history"), {
+        car: carId,
+        user: user.id,
+        startTime: serverTimestamp(),
+        isBookingActive: true,
+        price: null,
+        endTime: null
+    });
+
 };
 
 const stopBooking = async (userUUID) => {
-    
+
     // Get user from uid and update field
     const user = await getUserFromUserUUID(userUUID);
-    const currentlyRenting = user.data.currentlyRenting;
+    const carId = user.data.currentlyRenting;
     const userRef = doc(db, "users", user.id);
-    await setDoc(userRef, { currentlyRenting: null, isRenting: false }, { merge: true });
-    
+    await setDoc(userRef, {currentlyRenting: null, isRenting: false}, {merge: true});
+
     // Update car field
-    if (currentlyRenting) {
-        const carRef = doc(db, "cars", currentlyRenting);
-        await setDoc(carRef, { currentlyRentedBy: null, isBooked: true }, { merge: true });
-    }
+    if (!carId) return;
+    const carRef = doc(db, "cars", carId);
+    await setDoc(carRef, {currentlyRentedBy: null, isBooked: false}, {merge: true});
+
+    // Update history field
+    const historyQuery = query(collection(db, "history"),
+        where("car", "==", carId),
+        where("user", "==", user.id),
+        where("isBookingActive", "==", true));
+    const historyDocs = await getDocs(historyQuery);
+    const historyId =  historyDocs.docs[0].id;
+    const historyRef = doc(db, "history", historyId);
+    await setDoc(historyRef, {isBookingActive: false, price: 100, endTime: serverTimestamp()}, {merge: true})
 
 }
 

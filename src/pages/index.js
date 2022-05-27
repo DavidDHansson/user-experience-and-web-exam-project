@@ -16,8 +16,7 @@ const IndexPage = () => {
 
       if(user) {
         // startBooking("Vju2HRXd58lTHSoLXlTr", user.uid);
-        stopBooking(user.uid);
-          
+        // stopBooking(user.uid);
       }
     }, [user])
     
@@ -31,6 +30,14 @@ const IndexPage = () => {
             <div>
                 {(loading || error) ? <p>Loading...</p> : <SignInButton />}
                 {(loading || error) ? <p>Loading...</p> : <LogOutButton />}
+                {
+                    user && (
+                        <>
+                            <button onClick={() => startBooking("Vju2HRXd58lTHSoLXlTr", user.uid)}>Start</button>
+                            <button onClick={() => stopBooking(user.uid)}>Stop</button>
+                        </>
+                    )
+                }
             </div>
         </Layout>
     );
