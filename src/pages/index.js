@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { SignInButton, LogOutButton } from "./../components/authButtons"
-import { auth } from "./../services/firebase";
+import { auth, startBooking, stopBooking } from "./../services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const IndexPage = () => {
@@ -12,7 +12,13 @@ const IndexPage = () => {
     const [user, loading, error] = useAuthState(auth);
 
     useEffect(() => {
-      console.log(user);
+      console.log("Update: " + user);
+
+      if(user) {
+        // startBooking("Vju2HRXd58lTHSoLXlTr", user.uid);
+        stopBooking(user.uid);
+          
+      }
     }, [user])
     
     return (

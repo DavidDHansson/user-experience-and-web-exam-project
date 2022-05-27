@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, query, where, addDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, query, where, addDoc, setDoc, doc } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
 
 const firebaseConfig = {
@@ -14,6 +14,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+/*
+ *   AUTHENTICATION
+ */
 
 const signIn = async () => {
 
@@ -32,7 +36,8 @@ const signIn = async () => {
                 authProvider: "google",
                 email: user.email,
                 icon: user.photoURL,
-                currentlyRenting: null
+                currentlyRenting: null,
+                isRenting: false
             });
         }
     } catch (err) {
@@ -42,4 +47,49 @@ const signIn = async () => {
 
 const logOut = () => signOut(auth);
 
-export { signIn, logOut, auth };
+
+
+/*
+ *   HELPER METHODS
+ */
+
+const getUserFromUserUUID = async (userUUID) => {
+    const userQuery = query(collection(db, "users"), where("uid", "==", userUUID));
+    const docs = await getDocs(userQuery);
+    return { data: docs.docs[0].data(), id: docs.docs[0].id };
+}
+
+/*
+ *   BOOKING
+ */
+
+const startBooking = async (carId, userUUID) => {
+
+    // Get user from uid and update field
+    const user = await getUserFromUserUUID(userUUID);
+    const userRef = doc(db, "users", user.id)
+    await setDoc(userRef, { currentlyRenting: carId, isRenting: true }, { merge: true })
+
+    // Update car field
+    const carRef = doc(db, "cars", carId)
+    await setDoc(carRef, { currentlyRentedBy: user.id, isBooked: true }, { merge: true })
+
+};
+
+const stopBooking = async (userUUID) => {
+    
+    // Get user from uid and update field
+    const user = await getUserFromUserUUID(userUUID);
+    const currentlyRenting = user.data.currentlyRenting;
+    const userRef = doc(db, "users", user.id);
+    await setDoc(userRef, { currentlyRenting: null, isRenting: false }, { merge: true });
+    
+    // Update car field
+    if (currentlyRenting) {
+        const carRef = doc(db, "cars", currentlyRenting);
+        await setDoc(carRef, { currentlyRentedBy: null, isBooked: true }, { merge: true });
+    }
+
+}
+
+export { signIn, logOut, auth, startBooking, stopBooking };
