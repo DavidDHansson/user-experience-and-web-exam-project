@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, query, where, addDoc, setDoc, doc, serverTimestamp, orderBy } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, query, where, addDoc, setDoc, doc, serverTimestamp } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
 
 const firebaseConfig = {
@@ -27,7 +27,7 @@ const signIn = async () => {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user;
         const userQuery = query(collection(db, "users"), where("uid", "==", user.uid));
-        const docs = await getDocs(userQuery)
+        const docs = await getDocs(userQuery);
 
         if (docs.docs.length === 0) {
             await addDoc(collection(db, "users"), {
@@ -70,12 +70,12 @@ const startBooking = async (carId, userUUID) => {
 
     // Get user from uid and update field
     const user = await getUserFromUserUUID(userUUID);
-    const userRef = doc(db, "users", user.id)
-    await setDoc(userRef, { currentlyRenting: carId, isRenting: true }, { merge: true })
+    const userRef = doc(db, "users", user.id);
+    await setDoc(userRef, { currentlyRenting: carId, isRenting: true }, { merge: true });
 
     // Update car field
-    const carRef = doc(db, "cars", carId)
-    await setDoc(carRef, { currentlyRentedBy: user.id, isBooked: true }, { merge: true })
+    const carRef = doc(db, "cars", carId);
+    await setDoc(carRef, { currentlyRentedBy: user.id, isBooked: true }, { merge: true });
 
     // Add history field
     await addDoc(collection(db, "history"), {
@@ -111,7 +111,7 @@ const stopBooking = async (userUUID) => {
 
     historyDocs.forEach(historyDoc => {
         const historyRef = doc(db, "history", historyDoc.id);
-        setDoc(historyRef, {isBookingActive: false, price: 100, endTime: serverTimestamp()}, {merge: true})
+        setDoc(historyRef, {isBookingActive: false, price: 100, endTime: serverTimestamp()}, {merge: true});
     });
 
 }
