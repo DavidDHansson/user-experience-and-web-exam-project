@@ -47,8 +47,6 @@ const signIn = async () => {
 
 const logOut = () => signOut(auth);
 
-
-
 /*
  *   HELPER METHODS
  */
