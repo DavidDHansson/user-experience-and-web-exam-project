@@ -32,10 +32,16 @@ const IndexPage = () => {
         
         <div>
             <Header />
-        <h1> Lej en bil, men ikke hvilken som helst bil.</h1>
-        <StaticImage src={herobanner} alt="Hero banner" className="hero-banner" />
+        <div className="head-text">
+        
+        <div className='text-on-image'>
+        <img src={herobanner} alt="Hero banner" className="hero-banner" />
+            <h1> Lej en bil, men ikke hvilken som helst bil.</h1>
+        </div>
+            
          {/* <StaticImage imgClassName="backgroundImage" src="../images/racing.png" alt="Hero banner"/>  */}
-         <StaticImage src={logo} className="logo-bottom" />
+         </div>
+         <img src={logo} className="logo-bottom" />
             <div className="aboveFooter">
                 <h2> Har du brug for hjælp?</h2>
                 <h3> Lorem ipsum dolor sit amat.</h3>

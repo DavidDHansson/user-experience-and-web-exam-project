@@ -2,17 +2,14 @@
     margin-top: 1rem;
     padding: 1rem;
     background-color: rgb(240, 240, 240);
-    
+
     bottom: 0;
     left: 0;
     width: 100%;
-    text-align: center;
-    justify-content: space-between;
-    align-items: center;
-    
 }
 
 h1 {
     margin: auto;
     align-self: center;
+    color: gray;
 }
