@@ -5,7 +5,7 @@ import '../components/footerbar.css'
 
 const Footer = ({ siteTitle }) => (
     <div className="footer-bar-wrapper">
-        <h1>Footer</h1>
+        <h5>Footer</h5>
     </div>
 );
 

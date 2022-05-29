@@ -8,8 +8,11 @@
     width: 100%;
 }
 
-h1 {
-    margin: auto;
+h5 {
+    margin: auto 0;
     align-self: center;
     color: gray;
+    
+    width: 100%;
+    text-align: center;
 }
