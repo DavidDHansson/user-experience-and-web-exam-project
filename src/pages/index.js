@@ -22,27 +22,28 @@ const IndexPage = () => {
     }, [user])
     
     return (
-        <Layout>
-            <Seo title="Home" />
-            <Link to={"page-2"}>Page 2</Link> <br />
-            <Link to={"using-dsg"}>Using dsg</Link>
+        <></>
+        // <Layout>
+        //     <Seo title="Home" />
+        //     <Link to={"page-2"}>Page 2</Link> <br />
+        //     <Link to={"using-dsg"}>Using dsg</Link>
 
-            <br />
-            <SwipeButton text={"Bestil bil"} onSuccess={() => console.log("tes")}/>
-            <br />
-            <div>
-                {(loading || error) ? <p>Loading...</p> : <SignInButton />}
-                {(loading || error) ? <p>Loading...</p> : <LogOutButton />}
-                {
-                    user && (
-                        <>
-                            <button onClick={() => startBooking("Vju2HRXd58lTHSoLXlTr", user.uid)}>Start</button>
-                            <button onClick={() => stopBooking(user.uid)}>Stop</button>
-                        </>
-                    )
-                }
-            </div>
-        </Layout>
+        //     <br />
+        //     <SwipeButton text={"Bestil bil"} onSuccess={() => console.log("tes")}/>
+        //     <br />
+        //     <div>
+        //         {(loading || error) ? <p>Loading...</p> : <SignInButton />}
+        //         {(loading || error) ? <p>Loading...</p> : <LogOutButton />}
+        //         {
+        //             user && (
+        //                 <>
+        //                     <button onClick={() => startBooking("Vju2HRXd58lTHSoLXlTr", user.uid)}>Start</button>
+        //                     <button onClick={() => stopBooking(user.uid)}>Stop</button>
+        //                 </>
+        //             )
+        //         }
+        //     </div>
+        // </Layout>
     );
 };
 
