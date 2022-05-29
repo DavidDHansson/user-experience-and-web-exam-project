@@ -5,9 +5,69 @@ h1 {
     justify-content: center;
 }
 
-.backgroundImage {
-    border: 2px solid pink;
-    width: 50px;
+h2 {
+    margin-top: 5%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
 
+h3 {
+    margin-bottom: 4%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: small;
+
+}
+
+.aboveFooter {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgb(240, 240, 240);
+    position: bottom;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+
+}
+
+button {
+    background-color: #2d68de;
+    border: none;
+    color: white;
+    
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin: 0 auto;
+    left: 50%;
+
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+.hero-banner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+}
+
+.logo-bottom {
+    display: block;
+    padding-top: 50%;
+    margin: 0 auto;
+    
+    
 }
 

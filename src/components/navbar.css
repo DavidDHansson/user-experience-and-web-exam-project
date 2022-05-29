@@ -9,7 +9,7 @@
     width: 100%;
     z-index: 99;
     transition: all 200ms ease-in-out;
-    background-color: gainsboro;
+    background-color: rgb(226, 226, 226);
 }
 
 .navigation-content {
@@ -23,8 +23,11 @@
     
 }
 
-.burger-menu {
-    width: 2px;
-    height: 2px;
+.navbar-profile {
+    padding-right: 20px;
+}
 
+.navbar-menu {
+    padding-left: 20px;
+   
 }

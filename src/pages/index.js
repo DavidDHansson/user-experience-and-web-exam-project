@@ -8,9 +8,11 @@ import { SignInButton, LogOutButton } from "./../components/authButtons"
 import { auth, startBooking, stopBooking } from "./../services/firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
 import Header from "../components/header"
+import Footer from "../components/footer"
 import '../components/index.module.css'
-import Shrek from '../images/shrek.png'
+import herobanner from '../images/racing.png'
 import { StaticImage } from "gatsby-plugin-image"
+import logo from '../images/SKRRT2.svg'
 
 
 const IndexPage = () => {
@@ -31,8 +33,16 @@ const IndexPage = () => {
         <div>
             <Header />
         <h1> Lej en bil, men ikke hvilken som helst bil.</h1>
-
-        <StaticImage imgClassName="backgroundImage" src="../images/shrek.png" alt="A Shrek"/>
+        <StaticImage src={herobanner} alt="Hero banner" className="hero-banner" />
+         {/* <StaticImage imgClassName="backgroundImage" src="../images/racing.png" alt="Hero banner"/>  */}
+         <StaticImage src={logo} className="logo-bottom" />
+            <div className="aboveFooter">
+                <h2> Har du brug for hjælp?</h2>
+                <h3> Lorem ipsum dolor sit amat.</h3>
+            </div>
+         <button className="button" >Læs vores F.A.Q.</button>
+        
+            <Footer />
         </div>
 
         
