@@ -30,27 +30,31 @@ const IndexPage = () => {
 
     return (
 
-        <div>
+        <main>
+
             <Header />
 
-            <div>
-                <StaticImage className="hero-banner" src="../images/racing.png" alt="Hero banner" /> 
-                <h1> Lej en bil, men ikke hvilken som helst bil.</h1>
-            </div>
+            <header className="header-wrapper">
+                <StaticImage imgClassName="hero-banner" src="../images/racing.png" alt="Hero banner" /> 
 
-            <div className="logo-bottom">
-                <StaticImage className="logo-bottom" src="../images/SKRRT2.svg" alt="Logo" /> 
-            </div>
+                    <div className="header-title-wrapper">
+                        <p> Lej en bil, men ikke hvilken som helst bil.</p>
+                    </div>
+
+            </header>
+
 
             <div className="aboveFooter">
+            <div className="logo-bottom">
+                <StaticImage src="../images/SKRRT2.svg" alt="Logo" /> 
+            </div>
                 <h2> Har du brug for hjælp?</h2>
                 <h3> Lorem ipsum dolor sit amat.</h3>
+                <button className="button" >Læs vores F.A.Q.</button>
             </div>
 
-            <button className="button" >Læs vores F.A.Q.</button>
-
             <Footer />
-        </div>
+        </main>
 
 
         // <img src={herobanner} alt="Hero banner" className="hero-banner" />

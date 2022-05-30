@@ -1,31 +1,42 @@
-h1 {
-    position: absolute;
-    top: 30%;
-    font-size: xxx-large;
-    width: 100%;
-    text-align: center;
 
 
+.positions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 
-.head-text {
+.hero-banner-and-title {
+    width: 100%;
+    height: 90vh;
+    display: grid;
+    place-items: center;
     position: relative;
 }
 
-.text-on-image {
-    position: absolute;
-    right: 50%;
-    left: 50%;
-    bottom: 15%;
+.header-title-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    -webkit-text-stroke-color: white;
+}
 
+h1 {
+    
+    color: pink;
+    z-index: 0;
+    
 }
 
 h2 {
     margin-top: 5%;
-
-    display: flex;
-    text-align: center;
-    justify-content: center;
+    z-index: 10;
 }
 
 h3 {
@@ -39,12 +50,9 @@ h3 {
 
 
 .aboveFooter {
-    margin-top: 1rem;
+    margin-top: 13.5rem;
     padding: 1rem;
-    background-color: rgb(240, 240, 240);
-    position: bottom;
-    bottom: 0;
-    left: 0;
+    background-color: rgb(255, 255, 255);
     width: 100%;
     text-align: center;
 
@@ -76,10 +84,11 @@ button:hover {
     top: 0;
     left: 0;
     z-index: -1;
-    background-color: hsl(0, 100%, 50%);
+    
 }
 
 .logo-bottom {
-    background-color: hsl(0, 100%, 50%);
+
+    transform: translateY(95px);
 }
 
