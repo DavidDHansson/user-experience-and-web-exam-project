@@ -4,8 +4,8 @@ h1 {
     font-size: xxx-large;
     width: 100%;
     text-align: center;
-  
- 
+
+
 }
 
 .head-text {
@@ -17,12 +17,12 @@ h1 {
     right: 50%;
     left: 50%;
     bottom: 15%;
-    
+
 }
 
 h2 {
     margin-top: 5%;
-    
+
     display: flex;
     text-align: center;
     justify-content: center;
@@ -76,11 +76,10 @@ button:hover {
     top: 0;
     left: 0;
     z-index: -1;
-
+    background-color: hsl(0, 100%, 50%);
 }
 
 .logo-bottom {
-    width: 100%;
-    padding-top: 50%;
- 
+    background-color: hsl(0, 100%, 50%);
 }
+

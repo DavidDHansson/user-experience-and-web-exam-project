@@ -9,7 +9,7 @@ import { auth, startBooking, stopBooking } from "./../services/firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
 import Header from "../components/header"
 import Footer from "../components/footer"
-import '../components/index.module.css'
+import '../components/index.css'
 import herobanner from '../images/racing.png'
 import { StaticImage } from "gatsby-plugin-image"
 import logo from '../images/SKRRT2.svg'
@@ -20,38 +20,41 @@ const IndexPage = () => {
     const [user, loading, error] = useAuthState(auth);
 
     useEffect(() => {
-      console.log("Update: " + user);
+        console.log("Update: " + user);
 
-      if(user) {
-        // startBooking("Vju2HRXd58lTHSoLXlTr", user.uid);
-        // stopBooking(user.uid);
-      }
+        if (user) {
+            // startBooking("Vju2HRXd58lTHSoLXlTr", user.uid);
+            // stopBooking(user.uid);
+        }
     }, [user])
-    
+
     return (
-        
+
         <div>
             <Header />
-        <div className="container">
-        <img src={herobanner} alt="Hero banner" className="hero-banner" />
-        <h1> Lej en bil, men ikke hvilken som helst bil.</h1>
-        </div>
-            
-         {/* <StaticImage imgClassName="backgroundImage" src="../images/racing.png" alt="Hero banner"/>  */}
-         <div className="logo-bottom">
-            <img src={logo} className="logo-bottom" id="logo" />
-         </div>
-         
+
+            <div>
+                <StaticImage className="hero-banner" src="../images/racing.png" alt="Hero banner" /> 
+                <h1> Lej en bil, men ikke hvilken som helst bil.</h1>
+            </div>
+
+            <div className="logo-bottom">
+                <StaticImage className="logo-bottom" src="../images/SKRRT2.svg" alt="Logo" /> 
+            </div>
+
             <div className="aboveFooter">
                 <h2> Har du brug for hjælp?</h2>
                 <h3> Lorem ipsum dolor sit amat.</h3>
             </div>
-         <button className="button" >Læs vores F.A.Q.</button>
-        
+
+            <button className="button" >Læs vores F.A.Q.</button>
+
             <Footer />
         </div>
 
-        
+
+        // <img src={herobanner} alt="Hero banner" className="hero-banner" />
+        // <img src={logo} className="logo-bottom"/>
         // <Layout>
         //     <SwipeButton text={"Bestil bil"} onSuccess={() => console.log("tes")}/>
         //     <Seo title="Home" />
