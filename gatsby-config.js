@@ -1,3 +1,5 @@
+const autoprefixer = require('autoprefixer');
+
 module.exports = {
     siteMetadata: {
         title: `Gatsby Default Starter`,
@@ -12,12 +14,21 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `images`,
-                path: `${__dirname}/src/images`,
+                path: `${__dirname}/src/assets/images`,
             },
         },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
-        `gatsby-plugin-sass`,
+        {
+          resolve: `gatsby-plugin-sass`,
+          options: {
+            implementation: require("node-sass"),
+            postCssPlugins: [autoprefixer()],
+            sassOptions: {
+              precision: 6,
+            },
+          },
+        },
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
