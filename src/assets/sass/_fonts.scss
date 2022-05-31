@@ -6,8 +6,20 @@ p {
   font-size: 16px;
 }
 
+h4 {
+  font-weight: bold;
+}
+
 .gradient-text {
   background: $gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.button {
+  font-size: 14px;
+}
+
+.loginButton {
+
 }

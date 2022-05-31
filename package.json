@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@react-google-maps/api": "^2.11.9",
     "autoprefixer": "^10.4.7",
     "browserslist": "^4.20.3",
     "firebase": "^9.8.1",
@@ -22,6 +23,7 @@
     "gatsby-plugin-sharp": "^4.15.0",
     "gatsby-source-filesystem": "^4.15.0",
     "gatsby-transformer-sharp": "^4.15.0",
+    "google-map-react": "^2.1.10",
     "node-sass": "^6.0.1",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
