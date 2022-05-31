@@ -8,7 +8,7 @@ const HeroBanner = ({}) => (
         <div className="grid-container">
           <div className="grid-x">
             <div className="small-12 medium-8 large-6">
-              <h6 className="sub-title h4">Skrrt.</h6>
+              <h6 className="sub-title h4 gradient-text">Skrrt.</h6>
               <h1>Lej en bil, men ikke hvilken som helst bil.</h1> 
             </div>
           </div>
