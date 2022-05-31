@@ -1,51 +1,144 @@
 import React, { memo, useEffect, useState } from 'react';
-import { GoogleMap, useJsApiLoader, TrafficLayer, Marker } from '@react-google-maps/api';
+import GoogleMapReact from 'google-map-react';
 
-const containerStyle = {
-    width: "100%",
-    height: "600px",
-    marginTop: "-30px"
-};
+const AnyReactComponent = ({ text }) => {
 
-const center = {
-    lat: 55.6616636,
-    lng: 12.5913907
+    const [color, setColor] = useState(false);
+
+    return (
+        <div
+            style={{ backgroundColor: color ? "blue" : "red", width: "15px", height: "15px" }}
+            onMouseEnter={() => setColor(true)}
+            onMouseLeave={() => setColor(false)}>
+        </div>
+    );
 };
 
 const Maps = () => {
-    const [markers, setMarkers] = useState([]);
+    const defaultProps = {
+        center: {
+            lat: 55.6616636,
+            lng: 12.5913907
+        },
+        zoom: 11
+    };
 
-    const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: ""
-    })
-
-    useEffect(() => {
-        if (isLoaded) {
-            setMarkers([{ lat: 55.6616636, lng: 12.7913907 }, { lat: 55.6616636, lng: 12.2913907 }, { lat: 55.9616636, lng: 12.5913907 }])
-        }
-    }, [isLoaded])
-
-    const didTapMarker = (index) => {
-        console.log(index);
+    const handleApiLoaded = (map, maps) => {
+        map.setOptions({
+            styles: [
+                [
+                    {
+                        elementType: "geometry",
+                        stylers: [{ color: "#f5f5f5" }],
+                    },
+                    {
+                        elementType: "labels.icon",
+                        stylers: [{ visibility: "off" }],
+                    },
+                    {
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#616161" }],
+                    },
+                    {
+                        elementType: "labels.text.stroke",
+                        stylers: [{ color: "#f5f5f5" }],
+                    },
+                    {
+                        featureType: "administrative.land_parcel",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#bdbdbd" }],
+                    },
+                    {
+                        featureType: "poi",
+                        elementType: "geometry",
+                        stylers: [{ color: "#eeeeee" }],
+                    },
+                    {
+                        featureType: "poi",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#757575" }],
+                    },
+                    {
+                        featureType: "poi.park",
+                        elementType: "geometry",
+                        stylers: [{ color: "#e5e5e5" }],
+                    },
+                    {
+                        featureType: "poi.park",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#9e9e9e" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "geometry",
+                        stylers: [{ color: "#ffffff" }],
+                    },
+                    {
+                        featureType: "road.arterial",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#757575" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "geometry",
+                        stylers: [{ color: "#dadada" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#616161" }],
+                    },
+                    {
+                        featureType: "road.local",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#9e9e9e" }],
+                    },
+                    {
+                        featureType: "transit.line",
+                        elementType: "geometry",
+                        stylers: [{ color: "#e5e5e5" }],
+                    },
+                    {
+                        featureType: "transit.station",
+                        elementType: "geometry",
+                        stylers: [{ color: "#eeeeee" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "geometry",
+                        stylers: [{ color: "#c9c9c9" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#9e9e9e" }],
+                    },
+                ]
+            ]
+        });
     }
 
-    return isLoaded ? (
-        <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={14}
-        >
-            {markers.map((pos, index) => (
-                <Marker
-                    icon={"https://firebasestorage.googleapis.com/v0/b/ux-and-web-exam-project.appspot.com/o/Vector.png?alt=media&token=4edfb327-f1bd-4aaf-84c0-1c82aec9cbde"}
-                    position={pos}
-                    onClick={() => didTapMarker(index)}
+    return (
+        // Important! Always set the container height explicitly
+        <div style={{ height: '80vh', width: '100%' }}>
+            <GoogleMapReact
+                bootstrapURLKeys={{
+                    key: ""
+                }}
+                defaultCenter={defaultProps.center}
+                defaultZoom={defaultProps.zoom}
+                yesIWantToUseGoogleMapApiInternals={true}
+                onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+            >
+                <AnyReactComponent
+                    lat={55.6616636}
+                    lng={12.5913907}
+                    text="Marker"
                 />
-            ))}
-            {/* <TrafficLayer /> */}
-        </GoogleMap>
-    ) : <></>
+            </GoogleMapReact>
+        </div>
+    );
+
 };
 
-
-export default memo(Maps)
+export default Maps;
