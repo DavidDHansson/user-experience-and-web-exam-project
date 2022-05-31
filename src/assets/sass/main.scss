@@ -59,10 +59,11 @@
 
 
 
-// Global
-@import './layouts';
+// Globalw
 @import './fonts';
+@import './layouts';
 
 // Components
 @import './components/header';
-@import './components/herobanner';
+@import './components/aboveFooter';
+@import './components/footer';

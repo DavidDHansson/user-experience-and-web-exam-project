@@ -1,0 +1,19 @@
+.aboveFooter {
+    background: rgb(255, 255, 255);
+    .logo-bottom {
+        color: red;
+    }
+    .button {
+        &:hover{
+            opacity: 0.4;
+        }
+        
+    }
+
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
