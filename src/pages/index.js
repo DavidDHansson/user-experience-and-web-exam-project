@@ -8,7 +8,7 @@ import { auth, startBooking, stopBooking } from "./../services/firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 import HeroBanner from "@components/HeroBanner"
-import Maps from "@components/Maps"
+import Map from "@components/Map"
 
 
 const IndexPage = () => {
@@ -27,7 +27,7 @@ const IndexPage = () => {
     return (
         <>
           <HeroBanner />
-          <Maps />
+          <Map />
         </>
     );
 };
