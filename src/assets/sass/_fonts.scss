@@ -1,9 +1,19 @@
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
-
+h4 {
+  font-weight: bold;
+}
 .sub-title {
   background: $gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.button {
+  font-size: 14px;
+}
+
+.loginButton {
+
 }
