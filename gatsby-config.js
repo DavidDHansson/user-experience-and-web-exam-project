@@ -34,7 +34,9 @@ module.exports = {
           options: {
             alias: {
               "@components": "src/components",
-              "@icons": "src/assets/icons"
+              "@icons": "src/assets/icons",
+              "@assets": "src/assets",
+              "@images": "src/assets/images"
             },
             extensions: [
               "js",

@@ -3,8 +3,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: transparent;
-  color: $white;
+  background: white;
+  z-index: 9999;
+  color: $black;
 
   &.scroll {
     color: $black;
@@ -25,9 +26,6 @@
     .logo {
       width: auto;
       height: 36px;
-      * {
-        fill: white;
-      }
     }
     
   }
