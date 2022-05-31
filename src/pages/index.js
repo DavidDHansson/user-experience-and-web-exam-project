@@ -6,10 +6,9 @@ import SwipeButton from "./../components/SwipeButton"
 import { SignInButton, LogOutButton } from "./../components/authButtons"
 import { auth, startBooking, stopBooking } from "./../services/firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
-
-import HeroBanner from "@components/HeroBanner"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import Header from "../components/header"
+import Footer from "../components/footer"
+import herobanner from '../images/racing.png'
 import { StaticImage } from "gatsby-plugin-image"
 import logo from '../images/SKRRT2.svg'
 
@@ -28,18 +27,32 @@ const IndexPage = () => {
     }, [user])
 
     return (
-        <>
-          <HeroBanner />
 
-          <div className="aboveFooter">
-          <div className="logo-bottom">
-              <StaticImage src="../images/SKRRT2.svg" alt="Logo" /> 
-          </div>
-              <h2> Har du brug for hjælp?</h2>
-              <h3> Lorem ipsum dolor sit amat.</h3>
-              <button className="button" >Læs vores F.A.Q.</button>
-          </div>
-        </>
+        <main>
+
+            <Header />
+
+            <header className="header-wrapper">
+                <StaticImage imgClassName="hero-banner" src="../images/racing.png" alt="Hero banner" /> 
+
+                    <div className="header-title-wrapper">
+                        <p> Lej en bil, men ikke hvilken som helst bil.</p>
+                    </div>
+
+            </header>
+
+
+            <div className="aboveFooter">
+            <div className="logo-bottom">
+                <StaticImage src="../images/SKRRT2.svg" alt="Logo" /> 
+            </div>
+                <h2> Har du brug for hjælp?</h2>
+                <h3> Lorem ipsum dolor sit amat.</h3>
+                <button className="button" >Læs vores F.A.Q.</button>
+            </div>
+
+            <Footer />
+        </main>
     );
 };
 
