@@ -1,0 +1,33 @@
+.header-navigation-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    transition: all 200ms ease-in-out;
+    background-color: rgb(226, 226, 226);
+}
+
+.navigation-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: -1%;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.navbar-profile {
+    padding-right: 20px;
+}
+
+.navbar-menu {
+    padding-left: 20px;
+   
+}

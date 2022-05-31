@@ -1,7 +1,5 @@
 @import './settings';
 
-// @import 'foundation';
-// @import '../../../node_modules/foundation-sites/scss/foundation';
 @import '~foundation-sites/scss/foundation';
 
 // Global styles
@@ -58,3 +56,8 @@
 // @include foundation-flex-classes;
 // @include foundation-visibility-classes;
 // @include foundation-prototype-classes;
+
+
+
+@import './fonts';
+@import './layouts';

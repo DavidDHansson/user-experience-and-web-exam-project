@@ -1,0 +1,16 @@
+.footer-bar-wrapper {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgb(240, 240, 240);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+h5 {
+    margin: auto 0;
+    align-self: center;
+    color: gray;
+    width: 100%;
+    text-align: center;
+}
