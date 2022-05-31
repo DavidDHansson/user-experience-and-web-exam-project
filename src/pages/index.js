@@ -1,13 +1,12 @@
 import React, { useEffect } from "react"
 import { Link } from "gatsby"
 
-import Layout from "../components/layout"
 import Seo from "../components/seo"
 import SwipeButton from "./../components/SwipeButton"
 import { SignInButton, LogOutButton } from "./../components/authButtons"
 import { auth, startBooking, stopBooking } from "./../services/firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
-import Header from "../components/header"
+import Header from "../components/header/header"
 import Footer from "../components/footer"
 import '../components/index.css'
 import herobanner from '../images/racing.png'
@@ -55,31 +54,6 @@ const IndexPage = () => {
 
             <Footer />
         </main>
-
-
-        // <img src={herobanner} alt="Hero banner" className="hero-banner" />
-        // <img src={logo} className="logo-bottom"/>
-        // <Layout>
-        //     <SwipeButton text={"Bestil bil"} onSuccess={() => console.log("tes")}/>
-        //     <Seo title="Home" />
-        //     <Link to={"page-2"}>Page 2</Link> <br />
-        //     <Link to={"using-dsg"}>Using dsg</Link>
-
-        //     <br />
-        //     <br />
-        //     <div>
-        //         {(loading || error) ? <p>Loading...</p> : <SignInButton />}
-        //         {(loading || error) ? <p>Loading...</p> : <LogOutButton />}
-        //         {
-        //             user && (
-        //                 <>
-        //                     <button onClick={() => startBooking("Vju2HRXd58lTHSoLXlTr", user.uid)}>Start</button>
-        //                     <button onClick={() => stopBooking(user.uid)}>Stop</button>
-        //                 </>
-        //             )
-        //         }
-        //     </div>
-        // </Layout>
     );
 };
 
