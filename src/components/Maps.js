@@ -16,7 +16,7 @@ const Maps = () => {
     const [markers, setMarkers] = useState([]);
 
     const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: "AIzaSyCO8ddpmWU35zCivbVfdaUE19AxIhb3lMo"
+        googleMapsApiKey: ""
     })
 
     useEffect(() => {
