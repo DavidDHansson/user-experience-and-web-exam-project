@@ -2,3 +2,10 @@ main {
   margin-top: 56px;
   min-height: 100vh;
 }
+
+.grid-container {
+  padding: 0 1rem;
+  @include breakpoint(medium) {
+    padding: 0 2rem;
+  }
+}
