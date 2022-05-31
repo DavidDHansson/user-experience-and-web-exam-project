@@ -6,7 +6,7 @@ import SwipeButton from "./../components/SwipeButton"
 import { SignInButton, LogOutButton } from "./../components/authButtons"
 import { auth, startBooking, stopBooking } from "./../services/firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
-import Header from "../components/header/header"
+import Header from "../components/header"
 import Footer from "../components/footer"
 import '../components/index.css'
 import herobanner from '../images/racing.png'
