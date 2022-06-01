@@ -10,7 +10,8 @@ const Rent = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        let carId = window.location.href.split("=")[1]
+        const query = new URLSearchParams(window.location.search);
+        const carId = query.get("id");
         getCarFromId(carId)
             .then(data => {
                 setCar(data);
