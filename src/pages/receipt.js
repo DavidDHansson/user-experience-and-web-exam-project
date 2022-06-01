@@ -1,9 +1,15 @@
 import { StaticImage } from "gatsby-plugin-image";
-import * as React from "react"
+import React, { useEffect, useState } from "react"
+import SwipeButton from "@components/SwipeButton"
+import { navigate } from "gatsby"
+import { getCarFromId } from "@services/firebase.js";
+import { useAuthState } from "react-firebase-hooks/auth"
+import { auth, startBooking, getUserFromUserUUID } from "@services/firebase";
 
 import Seo from "../components/seo"
 
 const Receipt = () => (
+   
     <div className="receiptpage">
         <Seo title="Receipt page" />
         <div className="content">
