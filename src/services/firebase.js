@@ -87,12 +87,16 @@ const startBooking = async (carId, userUUID) => {
 
     // Update car field
     const carRef = doc(db, "cars", carId);
+    const carDoc = await getDoc(carRef);
+    const car = carDoc.data();
     await setDoc(carRef, { currentlyRentedBy: user.id, isBooked: true }, { merge: true });
 
     // Add history field
     await addDoc(collection(db, "history"), {
         car: carId,
         user: user.id,
+        name: car.name,
+        licensePlate: car.licensePlate,
         startTime: serverTimestamp(),
         isBookingActive: true,
         price: null,
@@ -122,7 +126,7 @@ const stopBooking = async (userUUID) => {
     const historyDocs = await getDocs(historyQuery);
 
     historyDocs.forEach(historyDoc => {
-        const historyRef = doc(db, "history", historyDoc.id);
+        const historyRef = doc(db, "history", historyDoc.id); // TODO: Correct price
         setDoc(historyRef, {isBookingActive: false, price: 100, endTime: serverTimestamp()}, {merge: true});
     });
 

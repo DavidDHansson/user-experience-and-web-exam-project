@@ -1,10 +1,8 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import Seo from "../components/seo";
 
 const Receipt = () => (
     <div className="receiptpage">
-        <Seo title="Receipt page" />
         <div className="content">
             <StaticImage src="../assets/images/flueben.png" className="checkmark" alt="checkmark"/>
             <div className="title">
