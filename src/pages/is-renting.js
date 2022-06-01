@@ -16,7 +16,6 @@ const IsRenting = () => {
             .then(data => {
                 setCar(data);
                 setIsLoaded(true);
-                console.log(data);
             });
     }, []);
 
