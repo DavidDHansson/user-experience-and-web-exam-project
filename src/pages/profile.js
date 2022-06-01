@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import AboveFooter from "@components/AboveFooter";
+import React, { useEffect, useState } from "react";
 import { auth, logOut, getHistoryAndUserFromUUID } from "@services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { navigate } from "gatsby";
@@ -10,9 +9,8 @@ const Profile = () => {
     const [userEntry, setUserEntry] = useState();
     const [history, setHistory] = useState([]);
 
-    useState(() => {
+    useEffect(() => {
         if (user) {
-            console.log("update");
             getHistoryAndUserFromUUID(user.uid)
                 .then(data => { setUserEntry(data.user); setHistory(data.history); });
         }
@@ -35,7 +33,7 @@ const Profile = () => {
                 ))}
             </>
         );
-    } else if (!userEntry && !loading) {
+    } else if (!user && !loading) {
         return (
             <>
                 <p>Du er ikke logged ind</p>
