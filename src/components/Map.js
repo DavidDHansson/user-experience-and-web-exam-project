@@ -53,6 +53,7 @@ const Map = () => {
                       <h6 className="license">{activeCar.licensePlate}</h6>
                       <h3 className="title">{activeCar.name}</h3>
                     </div>
+
                     <div className="stats">
                       <div className="stat">
                         <p>{activeCar.stats.gasType}</p>
@@ -71,6 +72,9 @@ const Map = () => {
                         <p>{activeCar.stats.acceleration}</p>
                       </div>
                     </div>
+
+                    <a href="" className="button">Lej denne bil <span>6,95 kr/min</span></a>
+
                 </div>
             )}
         </div>

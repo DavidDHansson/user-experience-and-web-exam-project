@@ -78,7 +78,8 @@ $foundation-palette: (
   warning: #ffae00,
   alert: #cc4b37,
 );
-$gradient: linear-gradient(#0098EE, #0072F8);
+$gradient: linear-gradient(to right, #0098EE, #0072F8);
+$reverse-gradient: linear-gradient(to right, #0072F8, #0098EE);
 $light-gray: #BDC0C5;
 $medium-gray: #cacaca;
 $dark-gray: #59626D;
