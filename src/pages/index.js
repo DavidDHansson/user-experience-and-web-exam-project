@@ -10,7 +10,6 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import HeroBanner from "@components/HeroBanner"
 import Map from "@components/Map"
 
-
 const IndexPage = () => {
 
     const [user, loading, error] = useAuthState(auth);

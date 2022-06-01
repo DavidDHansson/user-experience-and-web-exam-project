@@ -48,7 +48,7 @@ const Map = () => {
                     navigate("/rent?id=" + activeCar.id)
                     */
                     }
-                    
+                    <img src={activeCar.imageURL} alt={activeCar.name} />
                     <div className="title-group">
                       <h6 className="license">{activeCar.licensePlate}</h6>
                       <h3 className="title">{activeCar.name}</h3>
@@ -71,7 +71,6 @@ const Map = () => {
                         <p>{activeCar.stats.acceleration}</p>
                       </div>
                     </div>
-                    <img src={activeCar.imageURL} alt={activeCar.name} />
                 </div>
             )}
         </div>
