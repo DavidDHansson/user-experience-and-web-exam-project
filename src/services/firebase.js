@@ -84,6 +84,12 @@ const getHistoryFromHistoryId = async (historyId) => {
     }
 };
 
+const addFundsToUser = async (amount, userUUID) => {
+    const user = await getUserFromUserUUID(userUUID);
+    const userRef = doc(db, "users", user.id);
+    await setDoc(userRef, { balance: user.data.balance + amount }, { merge: true });
+};
+
 /*
  *   BOOKING
  */
@@ -219,5 +225,6 @@ export {
     getCarFromId,
     getHistoryAndUserFromUUID,
     getActiveBooking,
-    getHistoryFromHistoryId
+    getHistoryFromHistoryId,
+    addFundsToUser
 };
