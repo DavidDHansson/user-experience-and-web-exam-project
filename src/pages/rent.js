@@ -94,8 +94,13 @@ const Rent = () => {
             </div>
         );
     } else if (user && userEntry && userEntry.data.isRenting) {
-        return <div><p>Please stop you booking before renting a new car</p></div>;
-    } else if(isLoaded && car.isBooked) {
+        return (
+            <div>
+                <p>Please stop you booking before renting a new car</p>
+                <button onClick={() => navigate("/is-renting?id=" + userEntry.data.currentlyRenting)}>TJEK DIN NUVÆRENDE BOOKING</button>
+            </div>
+        );
+    } else if (isLoaded && car.isBooked) {
         return <div>Car is already booked</div>;
     } else if (!user || error) {
         return (
@@ -109,4 +114,4 @@ const Rent = () => {
     }
 }
 
-export default Rent
+export default Rent;
