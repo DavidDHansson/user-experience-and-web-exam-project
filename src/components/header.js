@@ -14,13 +14,11 @@ const Header = ({ siteTitle }) => {
     return (
         <div id="masthead">
             <nav role="navigation">
-                <div className="grid-container">
                     <div className="inner">
                         <div onClick={() => navigate("/")}><MenuIcon className="menu-icon"/></div>
                         <div onClick={() => navigate("/")}><LogoIcon className="logo"/></div>
                         <div onClick={() => navigate("/profile")}>{user ? <img src={user.photoURL} className="user-icon user-loggedin-icon"/> : <UserIcon className="user-icon"/>}</div>
                     </div>
-                </div>
             </nav>
         </div>
     );

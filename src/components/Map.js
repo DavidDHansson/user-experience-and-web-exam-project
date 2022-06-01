@@ -48,6 +48,7 @@ const Map = () => {
                     navigate("/rent?id=" + activeCar.id)
                     */
                     }
+                    <span className="exitBtn" onClick={() => setActiveCar(null)}>X</span>
                     <img src={activeCar.imageURL} alt={activeCar.name} />
                     <div className="title-group">
                       <h6 className="license">{activeCar.licensePlate}</h6>
@@ -73,7 +74,7 @@ const Map = () => {
                       </div>
                     </div>
 
-                    <a href="" className="button">Lej denne bil <span>6,95 kr/min</span></a>
+                    <a href="javascript:;" onClick={() => {navigate("/rent?id=" + activeCar.id)}} className="button">Lej denne bil <span>{activeCar.price}/min</span></a>
 
                 </div>
             )}
