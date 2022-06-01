@@ -12,7 +12,7 @@ const Info = () => {
       if (user) {
           getHistoryAndUserFromUUID(user.uid)
               .then(data => { 
-                setUserEntry(data.user); 
+                setUserEntry(data.user.data);
                 setHistory(data.history);
               });
       }
@@ -26,7 +26,7 @@ const Info = () => {
             <h1 className="text-center">Info</h1>
             <div className="balance-group text-center">
               <h6 className="gradient-text">Balance</h6>
-              <p className="h4">{user.balance} kr.</p>
+              <p className="h4">{userEntry.balance} kr.</p>
               <button className="button">Tilføj 100 kr.</button>
             </div>
           </div>
