@@ -18,19 +18,24 @@ const Profile = () => {
         }
     }, [user]);
 
-    if (user && userEntry && !loading && !error) {
+    const logOutAndNavigate = () => {
+        logOut();
+        navigate("/");
+    }
+
+    if (userEntry && !loading && !error) {
         return (
             <>
                 <h1>{user.displayName}</h1>
                 <div>You are already logged in</div>
-                <button onClick={() => logOut()}>Log ud</button> <br />
+                <button onClick={() => logOutAndNavigate()}>Log ud</button> <br />
                 {userEntry.data.isRenting && (<button onClick={() => navigate("/is-renting?id=" + userEntry.data.currentlyRenting)}>TJEK DIN NUVÆRENDE BOOKING</button>)}
                 {history && history.map((entry, index) => (
                     <p key={index}>{entry.car}</p>
                 ))}
             </>
         );
-    } else if (!user && userEntry && !loading) {
+    } else if (!userEntry && !loading) {
         return (
             <>
                 <p>Du er ikke logged ind</p>
