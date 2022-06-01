@@ -24,9 +24,10 @@ const Info = () => {
         <div className="grid-container">
           <div className="inner">
             <h1 className="text-center">Info</h1>
-            <div className="balance-group">
-              <h6 className="text-gradient">Balance</h6>
+            <div className="balance-group text-center">
+              <h6 className="gradient-text">Balance</h6>
               <p className="h4">{user.balance} kr.</p>
+              <button className="button">Tilføj 100 kr.</button>
             </div>
           </div>
         </div>
