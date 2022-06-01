@@ -52,9 +52,10 @@ const Rent = () => (
 
         <div className="swiper-group">
           <h4 className="price gradient-text">6,95 kr. <span> / min</span></h4>
+
           <SwipeButton startText="Bekræft, start tur." endText="Tak, din tur er startet" onSuccess={ () => {
             setTimeout(() => {
-              navigate("/")
+              navigate("/is-renting/")
             }, 1000)
           }} />
         </div>
