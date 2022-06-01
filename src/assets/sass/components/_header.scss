@@ -30,7 +30,9 @@
     .logo {
       width: auto;
       height: 36px;
-      
+      svg {
+        display: block;
+      }
     }
 
     .profile-wrapper {

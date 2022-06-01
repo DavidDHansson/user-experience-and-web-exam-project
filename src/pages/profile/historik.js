@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import AboveFooter from "@components/AboveFooter";
 import { auth, logOut, getHistoryAndUserFromUUID } from "@services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { navigate } from "gatsby";
+import React, { useEffect, useState } from "react";
 
 const Historik = () => {
     const [user, loading, error] = useAuthState(auth);
     const [userEntry, setUserEntry] = useState();
     const [history, setHistory] = useState([]);
 
-    useState(() => {
+    useEffect(() => {
         if (user) {
-            console.log("update");
             getHistoryAndUserFromUUID(user.uid)
                 .then(data => { setUserEntry(data.user); setHistory(data.history); });
         }
