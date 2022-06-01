@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, query, where, addDoc, setDoc, doc, serverTimestamp } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, getDoc, query, where, addDoc, setDoc, doc, serverTimestamp } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
 
 const firebaseConfig = {
@@ -114,4 +114,24 @@ const stopBooking = async (userUUID) => {
 
 }
 
-export { signIn, logOut, auth, startBooking, stopBooking };
+/*
+ *   GET CARS
+ */
+
+const getCars = async () => {
+    const carQuery = query(collection(db, "cars"));
+    const docs = await getDocs(carQuery);
+
+    let carDataWithId = [];
+    docs.forEach(doc => carDataWithId.push({id: doc.id, ... doc.data()}));
+
+    return carDataWithId;
+}
+
+const getCarFromId = async (carId) => {
+    const carRef = doc(db, "cars", carId);
+    const carData = await getDoc(carRef);
+    return {id: carId, ... carData.data()};
+}
+
+export { signIn, logOut, auth, startBooking, stopBooking, getCars, getCarFromId };

@@ -36,7 +36,8 @@ module.exports = {
               "@components": "src/components",
               "@icons": "src/assets/icons",
               "@assets": "src/assets",
-              "@images": "src/assets/images"
+              "@images": "src/assets/images",
+              "@services": "src/services"
             },
             extensions: [
               "js",
