@@ -11,10 +11,7 @@ const Map = () => {
 
     useEffect(() => {
         getCars()
-            .then(data => {
-                setCars(data);
-                console.log(data);
-            });
+            .then(data => setCars(data));
     }, []);
 
     const didTapCar = (index) => setActiveCar(cars[index]);

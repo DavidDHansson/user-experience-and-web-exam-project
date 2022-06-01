@@ -5,15 +5,18 @@ import { navigate } from "gatsby"
 import { getCarFromId } from "@services/firebase.js";
 import { useInterval } from 'react-interval-hook';
 import { useAuthState } from "react-firebase-hooks/auth"
-import { auth, stopBooking } from "@services/firebase";
+import { auth, stopBooking, getActiveBooking } from "@services/firebase";
 
 const IsRenting = () => {
 
     const [car, setCar] = useState(null);
+    const [booking, setBooking] = useState(null);
+
     const [isLoaded, setIsLoaded] = useState(false);
+    const [user, error] = useAuthState(auth);
+
     const [time, setTime] = useState(0);
     const [formattedTime, setFormattedTime] = useState("");
-    const [user, error] = useAuthState(auth);
 
     useEffect(() => {
         const query = new URLSearchParams(window.location.search);
@@ -27,18 +30,27 @@ const IsRenting = () => {
                         setIsLoaded(true);
                     }
                 });
+
+            getActiveBooking(user.uid)
+                .then(data => {
+                    setBooking(data);
+                    const startTime = data.startTime.toDate().getTime();
+                    const now = new Date().getTime();
+                    const diff = Math.floor((now - startTime) / 1000);
+                    setTime(diff);
+                });
         }
     }, []);
 
     useInterval(() => {
-      setTime(time + 1);
+        setTime(time + 1);
 
-      let sec = time % 60;
-      let min = Math.floor(time / 60);
-      let hour = Math.floor(time / 60 / 60);
+        let sec = time % 60;
+        let min = Math.floor(time / 60);
+        let hour = Math.floor(time / 60 / 60);
 
-      let string = (hour < 10 ? "0" + hour : hour) + ":" + (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
-      setFormattedTime(string)
+        let string = (hour < 10 ? "0" + hour : hour) + ":" + (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+        setFormattedTime(string)
     });
 
     if (isLoaded && user) {
