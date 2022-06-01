@@ -18,9 +18,17 @@ const Profile = () => {
         }
     }, [user]);
 
-    if (loading || error) {
-        return <p>Loading</p>;
-    } else if (user && userEntry) {
+    if(!user && !userEntry && !loading && !error) {
+        return (
+            <div className="login-page">
+                <div className="login-wrapper">
+                    <h4>Log ind</h4>
+                    <button className="login-button" onClick={() => signIn()}>Log ind med Google</button>
+                </div>
+                <AboveFooter />
+            </div>
+        );
+    } else if (user && userEntry && !loading && !error) {
         return (
             <>
                 <h1>{user.displayName}</h1>
@@ -33,15 +41,7 @@ const Profile = () => {
             </>
         );
     } else {
-        return (
-            <div className="login-page">
-                <div className="login-wrapper">
-                    <h4>Log ind</h4>
-                    <button className="login-button" onClick={() => signIn()}>Log ind med Google</button>
-                </div>
-                <AboveFooter />
-            </div>
-        );
+        return <p>Loading</p>;
     }
 
 }
