@@ -57,11 +57,6 @@ const Receipt = () => {
                         <p className="right">{receipt && receipt.price} kr.</p>
                     </div>
 
-                    <div className="line">
-                        <p className="left">Din balance:</p>
-                        <p className="right">DK1234</p>
-                    </div>
-
                 </div>
                 <a href="/" className="button secondary">Gå til forside </a>
             </div>
