@@ -1,0 +1,57 @@
+#masthead {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  background: rgb(240, 240, 240);
+  color: $black;
+
+  &.scroll {
+    color: $black;
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 5vw;
+
+    & > div:hover {
+        cursor: pointer;
+    }
+
+    .menu-icon,
+    .user-icon {
+      width: 36px;
+      height: auto;
+    }
+
+    .logo {
+      width: auto;
+      height: 36px;
+      display: block;
+    }
+
+    .profile-wrapper {
+      position: relative;
+      &:before {
+        content: '';
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        display: block;
+        background: $gradient;
+        z-index: -1;
+        border-radius: 50%;
+        position: absolute;
+        top: -1px;
+        left: -1px;
+      }
+    }
+    .user-loggedin-icon {
+        border-radius: 50%;
+        border: 1px solid $white;
+    }
+
+  }
+}
