@@ -37,7 +37,8 @@ const signIn = async () => {
                 email: user.email,
                 icon: user.photoURL,
                 currentlyRenting: null,
-                isRenting: false
+                isRenting: false,
+                balance: 200
             });
         }
 
@@ -50,6 +51,16 @@ const signIn = async () => {
 
 const logOut = () => signOut(auth);
 
+/*
+ *   HELPER METHODS
+ */
+
+const getUserFromUserUUID = async (userUUID) => {
+    const userQuery = query(collection(db, "users"), where("uid", "==", userUUID));
+    const docs = await getDocs(userQuery);
+    return { data: docs.docs[0].data(), id: docs.docs[0].id };
+}
+
 const getHistoryAndUserFromUUID = async (userUUID) => {
     const user = await getUserFromUserUUID(userUUID);
     const historyQuery = query(collection(db, "history"), where("user", "==", user.id));
@@ -61,15 +72,17 @@ const getHistoryAndUserFromUUID = async (userUUID) => {
     return {user: user, history: data};
 };
 
-/*
- *   HELPER METHODS
- */
+const getHistoryFromHistoryId = async (historyId) => {
+    const historyRef = doc(db, "history", historyId);
+    const historyDoc = await getDoc(historyRef);
+    const historyData = historyDoc.data();
 
-const getUserFromUserUUID = async (userUUID) => {
-    const userQuery = query(collection(db, "users"), where("uid", "==", userUUID));
-    const docs = await getDocs(userQuery);
-    return { data: docs.docs[0].data(), id: docs.docs[0].id };
-}
+    if (historyData) {
+        return {id: historyId, ...historyData};
+    } else {
+        return null;
+    }
+};
 
 /*
  *   BOOKING
@@ -96,6 +109,7 @@ const startBooking = async (carId, userUUID) => {
         car: carId,
         user: user.id,
         name: car.name,
+        priceMin: car.price,
         licensePlate: car.licensePlate,
         startTime: serverTimestamp(),
         isBookingActive: true,
@@ -116,6 +130,8 @@ const stopBooking = async (userUUID) => {
     // Update car field
     if (!carId) return;
     const carRef = doc(db, "cars", carId);
+    const carDoc = await getDoc(carRef);
+    const car = carDoc.data();
     await setDoc(carRef, {currentlyRentedBy: null, isBooked: false}, {merge: true});
 
     // Update history field
@@ -125,11 +141,24 @@ const stopBooking = async (userUUID) => {
         where("isBookingActive", "==", true));
     const historyDocs = await getDocs(historyQuery);
 
+    // Calculate price
+    const historyData = [];
+    historyDocs.forEach(historyDoc => historyData.push(historyDoc.data()));
+    const startTime = historyData[0].startTime.toDate().getTime();
+    const now = new Date().getTime();
+    const timeSec = Math.floor((now - startTime) / 1000);
+    const secondsDiff = Math.floor(timeSec / 60);
+    const totalPrice = car.price * secondsDiff
+
+    // Update (all) bookings with new data
+    let latestHistoryDocId = null;
     historyDocs.forEach(historyDoc => {
-        const historyRef = doc(db, "history", historyDoc.id); // TODO: Correct price
-        setDoc(historyRef, {isBookingActive: false, price: 100, endTime: serverTimestamp()}, {merge: true});
+        const historyRef = doc(db, "history", historyDoc.id);
+        setDoc(historyRef, {isBookingActive: false, price: totalPrice, endTime: serverTimestamp()}, {merge: true});
+        latestHistoryDocId = historyDoc.id;
     });
 
+    return latestHistoryDocId;
 }
 
 const getActiveBooking = async (userUUID) => {
@@ -187,5 +216,6 @@ export {
     getCars,
     getCarFromId,
     getHistoryAndUserFromUUID,
-    getActiveBooking
+    getActiveBooking,
+    getHistoryFromHistoryId
 };

@@ -76,8 +76,8 @@ const IsRenting = () => {
 
                         <SwipeButton startText="Afslut turen" endText="Tak" onSuccess={() => {
                             setTimeout(() => {
-                                stopBooking(user.uid);
-                                navigate("/receipt");
+                                stopBooking(user.uid)
+                                    .then(id => navigate("/receipt?id=" + id));
                             }, 1000)
                         }} />
                     </div>

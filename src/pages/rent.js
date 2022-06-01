@@ -66,7 +66,7 @@ const Rent = () => {
                     </div>
 
                     <div className="swiper-group">
-                        <h4 className="price gradient-text">{car.price} kr. <span> / min</span></h4>
+                        <h4 className="price gradient-text">6,95 kr. <span> / min</span></h4>
                         {isLoaded && <SwipeButton startText="Bekræft, start tur." endText="Tak, din tur er startet" onSuccess={() => {
                             setTimeout(() => {
                                 startBooking(car.id, user.uid);
