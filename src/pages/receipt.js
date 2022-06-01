@@ -19,7 +19,7 @@ const Receipt = () => {
     const getTimeLength = () => {
         if (receipt) {
             const startTime = receipt.startTime.toDate().getTime();
-            const endTime = receipt.endTime.toDate().getTime();
+            const endTime = receipt.endTime ? receipt.endTime.toDate().getTime() : (new Date().getTime());
             return Math.floor(((endTime - startTime) / 1000) / 60); 
         } else {
             return 0;
@@ -54,7 +54,7 @@ const Receipt = () => {
 
                     <div className="line">
                         <p className="left">Betalt:</p>
-                        <p className="right">{receipt && receipt.price} kr.</p>
+                        <p className="right">{receipt && Math.floor(receipt.price)} kr.</p>
                     </div>
 
                 </div>
