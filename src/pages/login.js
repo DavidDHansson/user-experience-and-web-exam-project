@@ -5,8 +5,13 @@ import { navigate } from "gatsby";
 const Login = () => {
 
     const signInAndNavigate = () => {
-        signIn();
-        navigate("/");
+        signIn()
+          .then(() => {
+            navigate('/profile');
+          })
+          .catch(() => {
+            alert('error logging in');
+          })
     }
 
     return (

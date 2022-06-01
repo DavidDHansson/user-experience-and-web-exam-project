@@ -25,21 +25,28 @@ const Profile = () => {
 
     if (userEntry && !loading && !error) {
         return (
-            <>
-                <h1>{user.displayName}</h1>
-                <div>You are already logged in</div>
-                <button onClick={() => logOutAndNavigate()}>Log ud</button> <br />
-                {userEntry.data.isRenting && (<button onClick={() => navigate("/is-renting?id=" + userEntry.data.currentlyRenting)}>TJEK DIN NUVÆRENDE BOOKING</button>)}
+            <div className="profile-page">
+              <div className="grid-container text-center">
+                <h1>Hej, {user.displayName}.</h1>
+                <div className="buttons">
+                  <button onClick={() => {navigate('/profile/oplysninger')}} className="small-12 medium-4 button">Oplysninger</button>
+                  <button onClick={() => {navigate('/profile/historik')}} className="small-12 medium-4 button">Historik</button>
+                  <button className="small-12 medium-4 button secondary" onClick={() => logOutAndNavigate()}>Log ud</button>
+                </div>
+                {/* {userEntry.data.isRenting && (<button onClick={() => navigate("/is-renting?id=" + userEntry.data.currentlyRenting)}>TJEK DIN NUVÆRENDE BOOKING</button>)}
                 {history && history.map((entry, index) => (
                     <p key={index}>{entry.car}</p>
-                ))}
-            </>
+                ))} */}
+              </div>
+            </div>
         );
     } else if (!userEntry && !loading) {
         return (
             <>
-                <p>Du er ikke logged ind</p>
-                <button onClick={() => navigate("/login")}>Gå til login side</button>
+              <div className="grid-container text-center">
+                <h1>Du er ikke logged ind</h1>
+                <button className="button" onClick={() => navigate("/login")}>Gå til login side</button>
+              </div>
             </>
         );
     } else {

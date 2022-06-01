@@ -25,6 +25,9 @@ p {
   &.error {
     background-image: linear-gradient(to right, #F82D00 0%, #EE7200 51%, #F82D00 100%)
   }
+  &.secondary {
+    background: $dark-gray;
+  }
   &:hover {
     background-position: right center;
   }
