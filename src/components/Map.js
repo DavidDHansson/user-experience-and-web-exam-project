@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StaticImage } from "gatsby-plugin-image";
-import { navigate } from "gatsby";
+import { navigate, Link } from "gatsby";
 import GoogleMapReact from 'google-map-react';
 import { getCars } from "@services/firebase.js";
 
@@ -93,9 +93,9 @@ const Map = () => {
                     </div>
 
                     {activeCar.isBooked ? (
-                        <a href="javascript:;" className="button error">Bilen er i brug <span>{activeCar.price}/min</span></a>
+                        <Link className="button error">Bilen er i brug <span>{activeCar.price}/min</span></Link>
                     ) : (
-                        <a href="javascript:;" onClick={() => { navigate("/rent?id=" + activeCar.id) }} className="button">Lej denne bil <span>{activeCar.price}/min</span></a>
+                      <Link to={`/rent?id=${activeCar.id}`} className="button">Lej denne bil <span>{activeCar.price}/min</span></Link>
                     )}
 
                 </div>

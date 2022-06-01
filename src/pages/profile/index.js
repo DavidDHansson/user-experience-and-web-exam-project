@@ -27,14 +27,13 @@ const Profile = () => {
               <div className="grid-container text-center">
                 <h1>Hej, {user.displayName}.</h1>
                 <div className="buttons">
-                  <button onClick={() => {navigate('/profile/oplysninger')}} className="small-12 medium-4 button">Oplysninger</button>
-                  <button onClick={() => {navigate('/profile/historik')}} className="small-12 medium-4 button">Historik</button>
+                  <button onClick={() => {navigate('/profile/info')}} className="small-12 medium-4 button">Oplysninger</button>
+                  <button onClick={() => {navigate('/profile/history')}} className="small-12 medium-4 button">Historik</button>
+                  {userEntry.data.isRenting && (
+                    <button onClick={() => navigate("/is-renting?id=" + userEntry.data.currentlyRenting)} className="button error">Tjek din nuværende booking</button>
+                  )}
                   <button className="small-12 medium-4 button secondary" onClick={() => logOutAndNavigate()}>Log ud</button>
                 </div>
-                {/* {userEntry.data.isRenting && (<button onClick={() => navigate("/is-renting?id=" + userEntry.data.currentlyRenting)}>TJEK DIN NUVÆRENDE BOOKING</button>)}
-                {history && history.map((entry, index) => (
-                    <p key={index}>{entry.car}</p>
-                ))} */}
               </div>
             </div>
         );

@@ -6,7 +6,6 @@ import Seo from '@components/Seo';
 const Layout = ({ children }) => {
     return (
         <>
-            <Seo/>
             <Header />
             <main>
                 {children}

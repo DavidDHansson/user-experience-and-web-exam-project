@@ -10,3 +10,37 @@
     flex-direction: column;
   }
 }
+
+.history-page {
+  padding: 60px 0;
+  .history-list {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .history-item {
+    padding: 25px 0;
+    border-bottom: 1px solid rgba($light-gray, .3);
+    .title {
+      font-weight: 600;
+    }
+    .stats {
+      display: flex;
+
+      .stat {
+        &:not(:last-child) {
+          margin-right: 60px;
+          @include breakpoint(small down) {
+            margin-right: 30px;
+          }
+        }
+        * {
+          margin: 0;
+          color: $dark-gray;
+        }
+        p:first-child {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
