@@ -74,7 +74,11 @@ const Map = () => {
                       </div>
                     </div>
 
-                    <a href="javascript:;" onClick={() => {navigate("/rent?id=" + activeCar.id)}} className="button">Lej denne bil <span>{activeCar.price}/min</span></a>
+                    { activeCar.isBooked ? (
+                      <a href="javascript:;" className="button error">Bilen er i brug <span>{activeCar.price}/min</span></a>
+                    ) : (
+                      <a href="javascript:;" onClick={() => {navigate("/rent?id=" + activeCar.id)}} className="button">Lej denne bil <span>{activeCar.price}/min</span></a>
+                    )}
 
                 </div>
             )}

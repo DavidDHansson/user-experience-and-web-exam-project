@@ -48,9 +48,9 @@ const IsRenting = () => {
 
                 <div className="content">
                     <div className="title-group">
-                        <StaticImage className="car-image" src="../assets/images/hellcat.png" />
-                        <h6 className="license">DDK8892892</h6>
-                        <h1 className="title">Challanger Hellcat</h1>
+                        <img className="car-image" src={car.imageURL} />
+                        <h6 className="license">{car.licensePlate}</h6>
+                        <h1 className="title">{car.name}</h1>
                     </div>
 
                     <div className="counter">
@@ -58,7 +58,7 @@ const IsRenting = () => {
                     </div>
 
                     <div className="swiper-group">
-                        <h4 className="price gradient-text">6,95 kr. <span> / min</span></h4>
+                        <h4 className="price gradient-text">{car.price} kr. <span>/ min</span></h4>
 
                         <SwipeButton startText="Afslut turen" endText="Tak" onSuccess={() => {
                             setTimeout(() => {

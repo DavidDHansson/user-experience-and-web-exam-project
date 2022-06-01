@@ -55,14 +55,14 @@
             opacity: .3;
           }
         }
-        .sub-title {
+        p:first-child {
           color: $light-gray;
           margin-bottom: 0px;
         }
-        .title {
+        p:last-child {
           margin-bottom: 0px;
           color: $dark-gray;
-          font-weight: $global-weight-bold;
+          font-weight: 600;
         }
       }
     }

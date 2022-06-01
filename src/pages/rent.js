@@ -47,38 +47,22 @@ const Rent = () => {
                     </div>
 
                     <div className="stats">
-                        <div className="stat">
-                            <p className="sub-title">
-                                Benzin
-                            </p>
-                            <p className="title">
-                                {isLoaded && car.range}%
-                            </p>
-                        </div>
-                        <div className="stat">
-                            <p className="sub-title">
-                                Benzin
-                            </p>
-                            <p className="title">
-                                75%
-                            </p>
-                        </div>
-                        <div className="stat">
-                            <p className="sub-title">
-                                Benzin
-                            </p>
-                            <p className="title">
-                                75%
-                            </p>
-                        </div>
-                        <div className="stat">
-                            <p className="sub-title">
-                                Benzin
-                            </p>
-                            <p className="title">
-                                75%
-                            </p>
-                        </div>
+                      <div className="stat">
+                        <p>{car.stats.gasType}</p>
+                        <p>{car.stats.gas}</p>
+                      </div>
+                      <div className="stat">
+                        <p>Årgang</p>
+                        <p>{car.stats.year}</p>
+                      </div>
+                      <div className="stat">
+                        <p>HP</p>
+                        <p>{car.stats.hp}</p>
+                      </div>
+                      <div className="stat">
+                        <p>0-100 km/t</p>
+                        <p>{car.stats.acceleration}</p>
+                      </div>
                     </div>
 
                     <div className="swiper-group">

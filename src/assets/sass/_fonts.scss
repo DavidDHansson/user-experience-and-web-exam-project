@@ -22,6 +22,9 @@ p {
   padding: 17px 24px;
   transition: 200ms all ease-in-out;
   background-size: 200% auto;
+  &.error {
+    background-image: linear-gradient(to right, #F82D00 0%, #EE7200 51%, #F82D00 100%)
+  }
   &:hover {
     background-position: right center;
   }
