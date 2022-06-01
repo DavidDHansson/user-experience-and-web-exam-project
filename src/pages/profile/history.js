@@ -22,10 +22,11 @@ const History = () => {
           <div className="history-page">
             <div className="grid-container">
               <div className="history-list">
+                <h1 className="text-center">History</h1>
                 {history && history.map((entry, index) => (
                   <div key={index} className="history-item">
                     <h6 className="gradient-text">{entry.startTime.toDate().toDateString()}</h6>
-                    <h3 className="title">{entry.name}</h3>
+                    <h4 className="title">{entry.name}</h4>
                     <div className="stats">
                       <div className="stat">
                         <p>Regnr</p>

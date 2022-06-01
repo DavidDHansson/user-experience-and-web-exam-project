@@ -1,9 +1,40 @@
-import React from "react"
 
-const Info = () => (
-    <div>
-        <h1>Info</h1>
-    </div>
-)
+import { auth, logOut, getHistoryAndUserFromUUID } from "@services/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from "react";
+
+const Info = () => {
+  const [user, loading, error] = useAuthState(auth);
+  const [userEntry, setUserEntry] = useState();
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+      if (user) {
+          getHistoryAndUserFromUUID(user.uid)
+              .then(data => { 
+                setUserEntry(data.user); 
+                setHistory(data.history);
+              });
+      }
+  }, [user]);
+
+  if (userEntry && !loading && !error) {
+    return (
+      <div className="info-page">
+        <div className="grid-container">
+          <div className="inner">
+            <h1 className="text-center">Info</h1>
+            <div className="balance-group">
+              <h6 className="text-gradient">Balance</h6>
+              <p className="h4">{user.balance} kr.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  } else {
+    return <div>Restricted</div>
+  }
+}
 
 export default Info
