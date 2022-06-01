@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import AboveFooter from "@components/AboveFooter";
-import { signIn, auth, logOut } from "@services/firebase";
-import { useAuthState } from "react-firebase-hooks/auth"
-import { getHistoryAndUserFromUUID } from "@services/firebase";
+import { auth, logOut, getHistoryAndUserFromUUID } from "@services/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { navigate } from "gatsby";
 
 const Profile = () => {
@@ -13,22 +12,13 @@ const Profile = () => {
 
     useState(() => {
         if (user) {
+            console.log("update");
             getHistoryAndUserFromUUID(user.uid)
                 .then(data => { setUserEntry(data.user); setHistory(data.history); });
         }
     }, [user]);
 
-    if(!user && !userEntry && !loading && !error) {
-        return (
-            <div className="login-page">
-                <div className="login-wrapper">
-                    <h4>Log ind</h4>
-                    <button className="login-button" onClick={() => signIn()}>Log ind med Google</button>
-                </div>
-                <AboveFooter />
-            </div>
-        );
-    } else if (user && userEntry && !loading && !error) {
+    if (user && userEntry && !loading && !error) {
         return (
             <>
                 <h1>{user.displayName}</h1>
@@ -40,8 +30,15 @@ const Profile = () => {
                 ))}
             </>
         );
+    } else if (!user && userEntry && !loading) {
+        return (
+            <>
+                <p>Du er ikke logged ind</p>
+                <button onClick={() => navigate("/login")}>Gå til login side</button>
+            </>
+        );
     } else {
-        return <p>Loading</p>;
+        return (<p>Loading</p>);
     }
 
 }
