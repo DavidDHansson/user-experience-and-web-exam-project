@@ -34,13 +34,15 @@ const IsRenting = () => {
 
         if (user) {
             getActiveBooking(user.uid)
-            .then(data => {
-                setBooking(data);
-                const startTime = data.startTime.toDate().getTime();
-                const now = new Date().getTime();
-                const diff = Math.floor((now - startTime) / 1000);
-                setTime(diff);
-            });
+                .then(data => {
+                    setBooking(data);
+                    if (data) {
+                        const startTime = data.startTime.toDate().getTime();
+                        const now = new Date().getTime();
+                        const diff = Math.floor((now - startTime) / 1000);
+                        setTime(diff);
+                    }
+                });
         }
     }, [user]);
 
