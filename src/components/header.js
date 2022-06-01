@@ -5,17 +5,14 @@ import MenuIcon from '@icons/menu-icon.svg'
 import LogoIcon from '@icons/logo.svg'
 import UserIcon from '@icons/user-icon.svg'
 
-
-
-
 const Header = ({ siteTitle }) => (
     <div id="masthead">
       <nav role="navigation">
         <div className="grid-container">
           <div className="inner">
-            <MenuIcon className="menu-icon" />
-            <LogoIcon className="logo"/>
-            <UserIcon className="user-icon" />
+            <div onClick={() => navigate("/")}><MenuIcon className="menu-icon" /></div>
+            <div onClick={() => navigate("/")}><LogoIcon className="logo"/></div>
+            <div onClick={() => navigate("/")}><UserIcon className="user-icon" /></div>
           </div>
         </div>
       </nav>
