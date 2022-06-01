@@ -40,8 +40,11 @@ const signIn = async () => {
                 isRenting: false
             });
         }
+
+        return user;
     } catch (err) {
         console.error(err);
+        return err;
     }
 };
 
