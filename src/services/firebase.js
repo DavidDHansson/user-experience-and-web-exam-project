@@ -47,6 +47,17 @@ const signIn = async () => {
 
 const logOut = () => signOut(auth);
 
+const getHistoryAndUserFromUUID = async (userUUID) => {
+    const user = await getUserFromUserUUID(userUUID);
+    const historyQuery = query(collection(db, "history"), where("user", "==", user.id));
+    const docs = await getDocs(historyQuery);
+    
+    const data = [];
+    docs.forEach(entry => data.push(entry.data()));
+    
+    return {user: user, history: data};
+};
+
 /*
  *   HELPER METHODS
  */
@@ -140,4 +151,4 @@ const getCarFromId = async (carId) => {
     }
 }
 
-export { signIn, logOut, auth, getUserFromUserUUID, startBooking, stopBooking, getCars, getCarFromId };
+export { signIn, logOut, auth, getUserFromUserUUID, startBooking, stopBooking, getCars, getCarFromId, getHistoryAndUserFromUUID };

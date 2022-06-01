@@ -15,7 +15,6 @@ const IndexPage = () => {
     const [user, loading, error] = useAuthState(auth);
 
     useEffect(() => {
-        console.log("Update: " + user);
 
         if (user) {
             // startBooking("Vju2HRXd58lTHSoLXlTr", user.uid);
