@@ -3,11 +3,14 @@ import { StaticImage } from "gatsby-plugin-image"
 import SwipeButton from "@components/SwipeButton"
 import { navigate } from "gatsby"
 import { getCarFromId } from "@services/firebase.js";
+import { useInterval } from 'react-interval-hook';
 
 const IsRenting = () => {
 
     const [car, setCar] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [time, setTime] = useState(0);
+    const [formattedTime, setFormattedTime] = useState("");
 
     useEffect(() => {
         const query = new URLSearchParams(window.location.search);
@@ -19,36 +22,55 @@ const IsRenting = () => {
             });
     }, []);
 
-    return (
-        <div className="rent-page">
-            <StaticImage className="rent-bg" src="../assets/images/rent-bg.jpg" />
+    useInterval(() => {
+        setTime(time + 1);
 
-            <div className="content">
+        let sec = time % 60;
+        let min = Math.floor(time / 60);
+        let hour = Math.floor(time / 60 / 60);
 
-                <div className="title-group">
-                    <StaticImage className="car-image" src="../assets/images/hellcat.png" />
-                    <h6 className="license">DDK8892892</h6>
-                    <h1 className="title">Challanger Hellcat</h1>
-                </div>
+        let string = (hour < 10 ? "0" + hour : hour) + ":" + (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+        setFormattedTime(string)
+    });
 
-                <div className="counter">
-                    <h2>00:00:00</h2>
-                </div>
+    if(isLoaded) {
+      return (
+          <div className="rent-page">
+              <StaticImage className="rent-bg" src="../assets/images/rent-bg.jpg" />
 
-                <div className="swiper-group">
-                    <h4 className="price gradient-text">6,95 kr. <span> / min</span></h4>
+              <div className="content">
 
-                    <SwipeButton startText="Afslut turen" endText="Tak" onSuccess={() => {
-                        setTimeout(() => {
-                            navigate("/receipt")
-                        }, 1000)
-                    }} />
-                </div>
+                  <div className="title-group">
+                      <StaticImage className="car-image" src="../assets/images/hellcat.png" />
+                      <h6 className="license">{}</h6>
+                      <h1 className="title">Challanger Hellcat</h1>
+                  </div>
 
-            </div>
+                  <div className="counter">
+                      <h2>{formattedTime}</h2>
+                  </div>
 
-        </div>
-    );
+                  <div className="swiper-group">
+                      <h4 className="price gradient-text">6,95 kr. <span> / min</span></h4>
+
+                      <SwipeButton startText="Afslut turen" endText="Tak" onSuccess={() => {
+                          setTimeout(() => {
+                              navigate("/receipt")
+                          }, 1000)
+                      }} />
+                  </div>
+
+              </div>
+
+          </div>
+      );
+    } else {
+      return (
+        <>
+          <p>...</p>
+        </>
+      );
+    }
 }
 
 export default IsRenting
