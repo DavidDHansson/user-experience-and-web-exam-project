@@ -40,8 +40,10 @@ const Profile = () => {
     } else if (!user && !loading) {
         return (
             <>
-              <div className="grid-container text-center">
-                <h1>Du er ikke logged ind</h1>
+              <div style={{textAlign: "center", paddingTop: "20vh"}} className="grid-container text-center">
+                <div style={{marginBottom: "40px"}}>
+                  <h5>Du er ikke logged ind</h5>
+                </div>
                 <button className="button" onClick={() => navigate("/login")}>Gå til login side</button>
               </div>
             </>
