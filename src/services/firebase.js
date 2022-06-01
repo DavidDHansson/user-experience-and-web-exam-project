@@ -125,6 +125,25 @@ const stopBooking = async (userUUID) => {
 
 }
 
+const getActiveBooking = async (userUUID) => {
+    // Get user from uid and update field
+    const user = await getUserFromUserUUID(userUUID);
+    const carId = user.data.currentlyRenting;
+
+    if (!carId) return;
+
+    // Get booking
+    const historyQuery = query(collection(db, "history"),
+        where("car", "==", carId),
+        where("user", "==", user.id),
+        where("isBookingActive", "==", true));
+    const historyDocs = await getDocs(historyQuery);
+
+    let data = [];
+    historyDocs.forEach(doc => data.push(doc.data()));
+    return data[0];
+}
+
 /*
  *   GET CARS
  */
@@ -151,4 +170,4 @@ const getCarFromId = async (carId) => {
     }
 }
 
-export { signIn, logOut, auth, getUserFromUserUUID, startBooking, stopBooking, getCars, getCarFromId, getHistoryAndUserFromUUID };
+export { signIn, logOut, auth, getUserFromUserUUID, startBooking, stopBooking, getCars, getCarFromId, getHistoryAndUserFromUUID, getActiveBooking };
