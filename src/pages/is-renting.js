@@ -4,7 +4,7 @@ import SwipeButton from "@components/SwipeButton"
 import { navigate } from "gatsby"
 import { getCarFromId } from "@services/firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth"
-import { auth } from "@services/firebase";
+import { auth, stopBooking } from "@services/firebase";
 
 const IsRenting = () => {
 
@@ -48,7 +48,8 @@ const IsRenting = () => {
 
                         <SwipeButton startText="Afslut turen" endText="Tak" onSuccess={() => {
                             setTimeout(() => {
-                                navigate("/receipt")
+                                stopBooking(user.uid);
+                                navigate("/receipt");
                             }, 1000)
                         }} />
                     </div>
