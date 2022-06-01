@@ -43,7 +43,7 @@ const History = () => {
                                         <p>{entry.licensePlate}</p>
                                     </div>
                                     <div className="stat">
-                                        <p>Længde</p>
+                                        <p>Tid</p>
                                         <p>{getTimeLength(entry)} m</p>
                                     </div>
                                     <div className="stat">
