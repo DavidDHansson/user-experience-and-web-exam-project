@@ -5,4 +5,39 @@
     display: grid;
     place-items: center;
     background: rgb(241, 240, 240);
+    
+    .inner {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 10px 5vw;
+        position: relative;
+        .mid-side {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            h5 {
+                margin-left: 5px;
+                margin-bottom: 0;
+            }
+            
+
+
+            .logo-footer {
+                width: auto;
+                height: 20px;
+                opacity: 0.7;
+                z-index: 0;
+            }
+
+            #SKRRT {
+                * {fill: rgb(110, 110, 110);}
+            }
+        }
+    }
 }
