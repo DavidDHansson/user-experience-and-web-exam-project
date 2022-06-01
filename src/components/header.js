@@ -1,6 +1,6 @@
 import * as React from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
+import { navigate } from "gatsby"
 import MenuIcon from '@icons/menu-icon.svg'
 import LogoIcon from '@icons/logo.svg'
 import UserIcon from '@icons/user-icon.svg'
@@ -14,7 +14,7 @@ const Header = ({ siteTitle }) => (
         <div className="grid-container">
           <div className="inner">
             <MenuIcon className="menu-icon" />
-            <LogoIcon className="logo" />
+            <LogoIcon className="logo"/>
             <UserIcon className="user-icon" />
           </div>
         </div>

@@ -7,11 +7,15 @@ import { getCarFromId } from "@services/firebase.js";
 const Rent = () => {
 
     const [car, setCar] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         let carId = window.location.href.split("=")[1]
         getCarFromId(carId)
-            .then(data => setCar(data));
+            .then(data => {
+                setCar(data);
+                setIsLoaded(true);
+            });
     }, []);
 
     return (
@@ -21,9 +25,9 @@ const Rent = () => {
             <div className="content">
 
                 <div className="title-group">
-                    <img className="car-image" src={car.imageURL} />
+                    <img className="car-image" src={isLoaded && car.imageURL} />
                     <h6 className="license">DDK8892892</h6>
-                    <h1 className="title">{car.name}</h1>
+                    <h1 className="title">{isLoaded && car.name}</h1>
                 </div>
 
                 <div className="stats">
@@ -32,7 +36,7 @@ const Rent = () => {
                             Benzin
                         </p>
                         <p className="title">
-                            {car.range}%
+                            {isLoaded && car.range}%
                         </p>
                     </div>
                     <div className="stat">
