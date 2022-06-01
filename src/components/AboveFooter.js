@@ -1,5 +1,5 @@
-import * as React from "react"
-import LogoBottom from '@icons/SKRRT2.svg'
+import * as React from "react";
+import LogoBottom from '@icons/SKRRT2.svg';
 
 const Abovefooter = () => (
     <div className="aboveFooter">
@@ -10,4 +10,4 @@ const Abovefooter = () => (
     </div>
 )
 
-export default Abovefooter
+export default Abovefooter;

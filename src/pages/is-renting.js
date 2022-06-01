@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react"
-import { StaticImage } from "gatsby-plugin-image"
-import SwipeButton from "@components/SwipeButton"
-import { navigate } from "gatsby"
+import React, { useState, useEffect } from "react";
+import { StaticImage } from "gatsby-plugin-image";
+import SwipeButton from "@components/SwipeButton";
+import { navigate } from "gatsby";
 import { getCarFromId } from "@services/firebase.js";
 import { useInterval } from 'react-interval-hook';
-import { useAuthState } from "react-firebase-hooks/auth"
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, stopBooking, getActiveBooking } from "@services/firebase";
 
 const IsRenting = () => {
 
     const [car, setCar] = useState(null);
-    const [booking, setBooking] = useState(null);
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [user, error] = useAuthState(auth);
@@ -35,7 +34,6 @@ const IsRenting = () => {
         if (user) {
             getActiveBooking(user.uid)
                 .then(data => {
-                    setBooking(data);
                     if (data) {
                         const startTime = data.startTime.toDate().getTime();
                         const now = new Date().getTime();
@@ -60,11 +58,11 @@ const IsRenting = () => {
     if (isLoaded && user) {
         return (
             <div className="rent-page">
-                <StaticImage className="rent-bg" src="../assets/images/rent-bg.jpg" />
+                <StaticImage className="rent-bg" src="../assets/images/rent-bg.jpg" alt="Background of two cars" />
 
                 <div className="content">
                     <div className="title-group">
-                        <img className="car-image" src={car.imageURL} />
+                        <img className="car-image" src={car.imageURL} alt="the car you're renting" />
                         <h6 className="license">{car.licensePlate}</h6>
                         <h1 className="title">{car.name}</h1>
                     </div>

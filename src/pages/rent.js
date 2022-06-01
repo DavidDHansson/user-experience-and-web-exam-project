@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react"
-import { StaticImage } from "gatsby-plugin-image"
-import SwipeButton from "@components/SwipeButton"
-import { navigate } from "gatsby"
+import React, { useEffect, useState } from "react";
+import { StaticImage } from "gatsby-plugin-image";
+import SwipeButton from "@components/SwipeButton";
+import { navigate } from "gatsby";
 import { getCarFromId } from "@services/firebase.js";
-import { useAuthState } from "react-firebase-hooks/auth"
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, startBooking, getUserFromUserUUID } from "@services/firebase";
 
 const Rent = () => {
@@ -36,12 +36,12 @@ const Rent = () => {
     if (isLoaded && userEntry && !userEntry.data.isRenting && !car.isBooked) {
         return (
             <div className="rent-page">
-                <StaticImage className="rent-bg" src="../assets/images/rent-bg.jpg" />
+                <StaticImage className="rent-bg" src="../assets/images/rent-bg.jpg" alt="background of two cars"/>
 
                 <div className="content">
 
                     <div className="title-group">
-                        <img className="car-image" src={isLoaded && car.imageURL} />
+                        <img className="car-image" src={isLoaded && car.imageURL} alt="The car that you're renting"/>
                         <h6 className="license">{isLoaded && car.licensePlate}</h6>
                         <h1 className="title">{isLoaded && car.name}</h1>
                     </div>

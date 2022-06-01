@@ -156,7 +156,7 @@ const getCars = async () => {
     const docs = await getDocs(carQuery);
 
     let carDataWithId = [];
-    docs.forEach(doc => carDataWithId.push({id: doc.id, ... doc.data()}));
+    docs.forEach(doc => carDataWithId.push({id: doc.id, ...doc.data()}));
 
     return carDataWithId;
 }
@@ -167,10 +167,21 @@ const getCarFromId = async (carId) => {
     const carData = carDoc.data();
 
     if (carData) {
-        return {id: carId, ... carData};
+        return {id: carId, ...carData};
     } else {
         return null;
     }
 }
 
-export { signIn, logOut, auth, getUserFromUserUUID, startBooking, stopBooking, getCars, getCarFromId, getHistoryAndUserFromUUID, getActiveBooking };
+export {
+    signIn,
+    logOut,
+    auth,
+    getUserFromUserUUID,
+    startBooking,
+    stopBooking,
+    getCars,
+    getCarFromId,
+    getHistoryAndUserFromUUID,
+    getActiveBooking
+};

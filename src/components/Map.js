@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StaticImage } from "gatsby-plugin-image";
-import { navigate } from "gatsby"
+import { navigate } from "gatsby";
 import GoogleMapReact from 'google-map-react';
 import { getCars } from "@services/firebase.js";
 
@@ -120,7 +120,7 @@ const Marker = ({ imageURL, title, isBooked, didTapCar }) => {
             onClick={didTapCar}
             style={{ opacity: isBooked ? 0.8 : 1, filter: `hue-rotate(${isBooked ? "140deg" : "0deg"})` }}>
             <div style={{ position: "relative", top: "0", left: "0" }}>
-                <StaticImage style={{ position: "relative", top: "0", left: "0" }} src="../assets/images/marker.png" height={52} />
+                <StaticImage style={{ position: "relative", top: "0", left: "0" }} src="../assets/images/marker.png" height={52} alt="Marker on the map"/>
                 {/* <StaticImage style={{position: "absolute", top: "14", left: "0"}} src={imageURL} height={32}/> */}
             </div>
         </div>

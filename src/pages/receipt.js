@@ -1,19 +1,12 @@
+import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import React, { useEffect, useState } from "react"
-import SwipeButton from "@components/SwipeButton"
-import { navigate } from "gatsby"
-import { getCarFromId } from "@services/firebase.js";
-import { useAuthState } from "react-firebase-hooks/auth"
-import { auth, startBooking, getUserFromUserUUID } from "@services/firebase";
-
-import Seo from "../components/seo"
+import Seo from "../components/seo";
 
 const Receipt = () => (
-   
     <div className="receiptpage">
         <Seo title="Receipt page" />
         <div className="content">
-            <StaticImage src="../assets/images/flueben.png" className="checkmark"/>
+            <StaticImage src="../assets/images/flueben.png" className="checkmark" alt="checkmark"/>
             <div className="title">
                 <h6>Kvittering</h6>
                 <h1>Tak, fordi du brugte <span className="gradient-text">Skrrt.</span></h1>
@@ -34,9 +27,9 @@ const Receipt = () => (
                     <p className="left">Længde på tur:</p>
                     <p className="right">DK1234</p>
                 </div>
-            <div className="seperator"></div>
+                <div className="seperator"></div>
 
-            <div className="line">
+                <div className="line">
                     <p className="left">betalt:</p>
                     <p className="right">DK1234</p>
                 </div>
@@ -49,8 +42,6 @@ const Receipt = () => (
             </div>
             <a href="/" className="button secondary">Gå til forside </a>
         </div>
-
-        
     </div>
 )
 

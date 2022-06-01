@@ -1,7 +1,7 @@
-import React from 'react'
-import Swipe from 'react-swipe-button'
+import React from 'react';
+import Swipe from 'react-swipe-button';
 
-const SwipeButton = ({startText, endText, onSuccess}) => (
+const SwipeButton = ({ startText, endText, onSuccess }) => (
     <Swipe
         text={startText}
         color="#0362fc"
@@ -10,4 +10,4 @@ const SwipeButton = ({startText, endText, onSuccess}) => (
     />
 )
 
-export default SwipeButton
+export default SwipeButton;
