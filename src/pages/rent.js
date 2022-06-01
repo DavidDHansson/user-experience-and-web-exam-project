@@ -4,31 +4,36 @@ import SwipeButton from "@components/SwipeButton"
 import { navigate } from "gatsby"
 import { getCarFromId } from "@services/firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth"
-import { auth } from "@services/firebase";
+import { auth, startBooking, getUserFromUserUUID } from "@services/firebase";
 
 const Rent = () => {
 
     const [car, setCar] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [user, error] = useAuthState(auth);
+    const [userEntry, setUserEntry] = useState();
 
     useEffect(() => {
         const query = new URLSearchParams(window.location.search);
         const carId = query.get("id");
 
+        if (user) {
+            getUserFromUserUUID(user.uid)
+                .then(data => setUserEntry(data));
+        }
+
         if (carId) {
             getCarFromId(carId)
                 .then(data => {
-                    console.log(data);
                     if (data) {
                         setCar(data);
                         setIsLoaded(true);
                     }
                 });
         }
-    }, []);
+    }, [user]);
 
-    if (isLoaded && user) {
+    if (isLoaded && userEntry && !userEntry.data.isRenting && !car.isBooked) {
         return (
             <div className="rent-page">
                 <StaticImage className="rent-bg" src="../assets/images/rent-bg.jpg" />
@@ -80,15 +85,18 @@ const Rent = () => {
                         <h4 className="price gradient-text">6,95 kr. <span> / min</span></h4>
                         {isLoaded && <SwipeButton startText="Bekræft, start tur." endText="Tak, din tur er startet" onSuccess={() => {
                             setTimeout(() => {
-                                navigate("/is-renting?id=" + car.id)
-                            }, 1000)
+                                startBooking(car.id, user.uid);
+                                navigate("/is-renting?id=" + car.id);
+                            }, 1000);
                         }} />}
                     </div>
-
                 </div>
-
             </div>
         );
+    } else if (user && userEntry && userEntry.data.isRenting) {
+        return <div><p>Please stop you booking before renting a new car</p></div>;
+    } else if(isLoaded && car.isBooked) {
+        return <div>Car is already booked</div>;
     } else if (!user || error) {
         return (
             <>

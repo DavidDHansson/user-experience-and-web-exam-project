@@ -140,4 +140,4 @@ const getCarFromId = async (carId) => {
     }
 }
 
-export { signIn, logOut, auth, startBooking, stopBooking, getCars, getCarFromId };
+export { signIn, logOut, auth, getUserFromUserUUID, startBooking, stopBooking, getCars, getCarFromId };
