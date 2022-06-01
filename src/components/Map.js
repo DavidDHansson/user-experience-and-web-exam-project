@@ -8,11 +8,22 @@ const Map = () => {
 
     const [cars, setCars] = useState([]);
     const [activeCar, setActiveCar] = useState(null);
+    const [userLat, setUserLat] = useState(null);
+    const [userLng, setUserLng] = useState(null);
 
     useEffect(() => {
         getCars()
             .then(data => setCars(data));
     }, []);
+
+    const getUserLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                setUserLat(position.coords.latitude);
+                setUserLng(position.coords.longitude);
+            });
+        }
+    };
 
     const didTapCar = (index) => setActiveCar(cars[index]);
 
@@ -35,46 +46,56 @@ const Map = () => {
                         didTapCar={() => didTapCar(index)}
                     />
                 )}
+
+                {(userLat && userLng) && (
+                    <UserLocationMarker
+                        lat={userLat}
+                        lng={userLng}
+                    />
+                )}
             </GoogleMapReact>
+
+            <button className="current-location-button button" onClick={() => getUserLocation()}>Find egen lokation</button>
+
 
             {activeCar && (
                 <div className='marker-info'>
                     {
-                    /* 
-                    onClick={() => setActiveCar(null)} 
-                    navigate("/rent?id=" + activeCar.id)
-                    */
+                        /* 
+                        onClick={() => setActiveCar(null)} 
+                        navigate("/rent?id=" + activeCar.id)
+                        */
                     }
                     <span className="exitBtn" onClick={() => setActiveCar(null)}>X</span>
                     <img src={activeCar.imageURL} alt={activeCar.name} />
                     <div className="title-group">
-                      <h6 className="license">{activeCar.licensePlate}</h6>
-                      <h3 className="title">{activeCar.name}</h3>
+                        <h6 className="license">{activeCar.licensePlate}</h6>
+                        <h3 className="title">{activeCar.name}</h3>
                     </div>
 
                     <div className="stats">
-                      <div className="stat">
-                        <p>{activeCar.stats.gasType}</p>
-                        <p>{activeCar.stats.gas}</p>
-                      </div>
-                      <div className="stat">
-                        <p>Årgang</p>
-                        <p>{activeCar.stats.year}</p>
-                      </div>
-                      <div className="stat">
-                        <p>HP</p>
-                        <p>{activeCar.stats.hp}</p>
-                      </div>
-                      <div className="stat">
-                        <p>0-100 km/t</p>
-                        <p>{activeCar.stats.acceleration}</p>
-                      </div>
+                        <div className="stat">
+                            <p>{activeCar.stats.gasType}</p>
+                            <p>{activeCar.stats.gas}</p>
+                        </div>
+                        <div className="stat">
+                            <p>Årgang</p>
+                            <p>{activeCar.stats.year}</p>
+                        </div>
+                        <div className="stat">
+                            <p>HP</p>
+                            <p>{activeCar.stats.hp}</p>
+                        </div>
+                        <div className="stat">
+                            <p>0-100 km/t</p>
+                            <p>{activeCar.stats.acceleration}</p>
+                        </div>
                     </div>
 
-                    { activeCar.isBooked ? (
-                      <a href="javascript:;" className="button error">Bilen er i brug <span>{activeCar.price}/min</span></a>
+                    {activeCar.isBooked ? (
+                        <a href="javascript:;" className="button error">Bilen er i brug <span>{activeCar.price}/min</span></a>
                     ) : (
-                      <a href="javascript:;" onClick={() => {navigate("/rent?id=" + activeCar.id)}} className="button">Lej denne bil <span>{activeCar.price}/min</span></a>
+                        <a href="javascript:;" onClick={() => { navigate("/rent?id=" + activeCar.id) }} className="button">Lej denne bil <span>{activeCar.price}/min</span></a>
                     )}
 
                 </div>
@@ -82,6 +103,14 @@ const Map = () => {
         </div>
     );
 };
+
+const UserLocationMarker = () => (
+    <div className="current-location-marker">
+        <div className="inner">
+            <div className="inner"></div>
+        </div>
+    </div>
+);
 
 const Marker = ({ imageURL, title, isBooked, didTapCar }) => {
 
