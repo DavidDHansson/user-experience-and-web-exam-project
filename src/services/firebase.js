@@ -130,8 +130,14 @@ const getCars = async () => {
 
 const getCarFromId = async (carId) => {
     const carRef = doc(db, "cars", carId);
-    const carData = await getDoc(carRef);
-    return {id: carId, ... carData.data()};
+    const carDoc = await getDoc(carRef);
+    const carData = carDoc.data();
+
+    if (carData) {
+        return {id: carId, ... carData};
+    } else {
+        return null;
+    }
 }
 
 export { signIn, logOut, auth, startBooking, stopBooking, getCars, getCarFromId };

@@ -16,12 +16,14 @@ const IsRenting = () => {
         const query = new URLSearchParams(window.location.search);
         const carId = query.get("id");
 
-        if(carId) {
+        if (carId) {
             getCarFromId(carId)
-            .then(data => {
-                setCar(data);
-                setIsLoaded(true);
-            });
+                .then(data => {
+                    if (data) {
+                        setCar(data);
+                        setIsLoaded(true);
+                    }
+                });
         }
     }, []);
 
