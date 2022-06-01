@@ -22,7 +22,7 @@ const Map = () => {
     return (
         <div className="map-wrapper">
             <GoogleMapReact
-                bootstrapURLKeys={{ key: "" }}
+                bootstrapURLKeys={{ key: "AIzaSyBI0TZjF0Bbpk2rgPXzBM8dIf0cyEA7AA4" }}
                 defaultCenter={{ lat: 55.6616636, lng: 12.5913907 }}
                 defaultZoom={11}
                 className="map"
@@ -42,9 +42,39 @@ const Map = () => {
 
             {activeCar && (
                 <div className='marker-info'>
-                    <p>{activeCar.name}</p>
-                    <p style={{color: "red"}} onClick={() => setActiveCar(null)}>X</p>
-                    <button onClick={() => navigate("/rent?id=" + activeCar.id)}>Lej denne bil</button>
+                    {
+                    /* 
+                    onClick={() => setActiveCar(null)} 
+                    navigate("/rent?id=" + activeCar.id)
+                    */
+                    }
+                    <img src={activeCar.imageURL} alt={activeCar.name} />
+                    <div className="title-group">
+                      <h6 className="license">{activeCar.licensePlate}</h6>
+                      <h3 className="title">{activeCar.name}</h3>
+                    </div>
+
+                    <div className="stats">
+                      <div className="stat">
+                        <p>{activeCar.stats.gasType}</p>
+                        <p>{activeCar.stats.gas}</p>
+                      </div>
+                      <div className="stat">
+                        <p>Årgang</p>
+                        <p>{activeCar.stats.year}</p>
+                      </div>
+                      <div className="stat">
+                        <p>HP</p>
+                        <p>{activeCar.stats.hp}</p>
+                      </div>
+                      <div className="stat">
+                        <p>0-100 km/t</p>
+                        <p>{activeCar.stats.acceleration}</p>
+                      </div>
+                    </div>
+
+                    <a href="" className="button">Lej denne bil <span>6,95 kr/min</span></a>
+
                 </div>
             )}
         </div>
@@ -59,7 +89,7 @@ const Marker = ({ imageURL, title, isBooked, didTapCar }) => {
             onClick={didTapCar}
             style={{ opacity: isBooked ? 0.8 : 1, filter: `hue-rotate(${isBooked ? "140deg" : "0deg"})` }}>
             <div style={{ position: "relative", top: "0", left: "0" }}>
-                <StaticImage style={{ position: "relative", top: "0", left: "0" }} src="../assets/images/marker.png" height={51} />
+                <StaticImage style={{ position: "relative", top: "0", left: "0" }} src="../assets/images/marker.png" height={52} />
                 {/* <StaticImage style={{position: "absolute", top: "14", left: "0"}} src={imageURL} height={32}/> */}
             </div>
         </div>

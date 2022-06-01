@@ -13,7 +13,18 @@ p {
 }
 
 .button {
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 4px;
+  background-image: linear-gradient(to right, #0072ff 0%, #0b9ef3 51%, #0072ff 100%);
+  border: none;
+  outline: none;
+  padding: 17px 24px;
+  transition: 200ms all ease-in-out;
+  background-size: 200% auto;
+  &:hover {
+    background-position: right center;
+  }
 }
 
 .loginButton {
