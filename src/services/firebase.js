@@ -84,6 +84,12 @@ const getHistoryFromHistoryId = async (historyId) => {
     }
 };
 
+const addFundsToUser = async (amount, userUUID) => {
+    const user = await getUserFromUserUUID(userUUID);
+    const userRef = doc(db, "users", user.id);
+    await setDoc(userRef, { balance: user.data.balance + amount }, { merge: true });
+};
+
 /*
  *   BOOKING
  */
@@ -121,11 +127,10 @@ const startBooking = async (carId, userUUID) => {
 
 const stopBooking = async (userUUID) => {
 
-    // Get user from uid and update field
+    // Get user from uid
     const user = await getUserFromUserUUID(userUUID);
     const carId = user.data.currentlyRenting;
     const userRef = doc(db, "users", user.id);
-    await setDoc(userRef, {currentlyRenting: null, isRenting: false}, {merge: true});
 
     // Update car field
     if (!carId) return;
@@ -149,6 +154,9 @@ const stopBooking = async (userUUID) => {
     const timeSec = Math.floor((now - startTime) / 1000);
     const secondsDiff = Math.floor(timeSec / 60);
     const totalPrice = car.price * secondsDiff
+
+    // Update user with stop booking fields and new balance
+    await setDoc(userRef, {currentlyRenting: null, isRenting: false, balance: user.data.balance - totalPrice}, {merge: true});
 
     // Update (all) bookings with new data
     let latestHistoryDocId = null;
@@ -217,5 +225,6 @@ export {
     getCarFromId,
     getHistoryAndUserFromUUID,
     getActiveBooking,
-    getHistoryFromHistoryId
+    getHistoryFromHistoryId,
+    addFundsToUser
 };
