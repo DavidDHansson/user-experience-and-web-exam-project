@@ -30,7 +30,7 @@ const Map = () => {
     return (
         <div className="map-wrapper">
             <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyBI0TZjF0Bbpk2rgPXzBM8dIf0cyEA7AA4" }}
+                bootstrapURLKeys={{ key: "" }}
                 defaultCenter={{ lat: 55.6616636, lng: 12.5913907 }}
                 defaultZoom={11}
                 className="map"
