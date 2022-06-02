@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StaticImage } from "gatsby-plugin-image";
-import { navigate, Link } from "gatsby";
+import { Link } from "gatsby";
 import GoogleMapReact from 'google-map-react';
 import { getCars } from "@services/firebase.js";
 
@@ -30,7 +30,7 @@ const Map = () => {
     return (
         <div className="map-wrapper">
             <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyBI0TZjF0Bbpk2rgPXzBM8dIf0cyEA7AA4" }}
+                bootstrapURLKeys={{ key: "AIzaSyBev8fNpDV1BjbUsYFP8zhQKRahmh6jKyw" }}
                 defaultCenter={{ lat: 55.6616636, lng: 12.5913907 }}
                 defaultZoom={11}
                 className="map"

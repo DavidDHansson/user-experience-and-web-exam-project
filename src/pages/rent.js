@@ -79,19 +79,24 @@ const Rent = () => {
         );
     } else if (user && userEntry && userEntry.data.isRenting) {
         return (
-            <div>
-                <p>Please stop you booking before renting a new car</p>
-                <button onClick={() => navigate("/is-renting?id=" + userEntry.data.currentlyRenting)}>TJEK DIN NUVÆRENDE BOOKING</button>
+            
+            <div style={{textAlign: "center", paddingTop: "20vh"}}>
+                <div style={{marginBottom: "40px"}}>
+                <h5>Afslut venligst din nuværende booking, inden du forsøger at starte en ny!</h5>
+                </div>
+                <button onClick={() => navigate("/is-renting?id=" + userEntry.data.currentlyRenting)} className="button">Tjek din nuværende booking</button>
             </div>
         );
     } else if (isLoaded && car.isBooked) {
         return <div>Car is already booked</div>;
     } else if (!user || error) {
         return (
-            <>
-                <div>Du skal være logget ind for at booke en bil</div>
-                <button onClick={() => navigate("/profile")}>Gå til login side</button>
-            </>
+            <div style={{textAlign: "center", paddingTop: "20vh"}}>
+                <div style={{marginBottom: "40px"}}>
+                <h5>Du skal være logget ind for at booke en bil</h5>
+                </div>
+                <button onClick={() => navigate("/profile")} className="button">Gå til login side</button>
+            </div>
         );
     } else {
         return <div>Loading... Hvis der er gået mere end 5 sekunder, så prøv igen</div>
