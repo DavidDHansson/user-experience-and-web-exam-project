@@ -7,3 +7,10 @@ npm install -g gatsby-cli
 npm install
 gatsby develop
 ```
+
+If you run into any errors, then try restarting the page or run the following
+Errors can often occur when running the program for the first time
+```sh
+gatsby clean
+gatsby develop
+```
