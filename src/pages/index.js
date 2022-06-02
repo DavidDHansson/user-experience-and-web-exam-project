@@ -1,16 +1,14 @@
-import * as React from "react"
-import { Link } from "gatsby"
-
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import * as styles from "../components/index.module.css"
+import React from "react";
+import HeroBanner from "@components/HeroBanner";
+import Map from "@components/Map";
+import AboveFooter from "@components/AboveFooter";
 
 const IndexPage = () => (
-    <Layout>
-        <Seo title="Home"/>
-        <Link to={"page-2"}>Page 2</Link> <br />
-        <Link to={"using-dsg"}>Using dsg</Link>
-    </Layout>
-)
+    <>
+        <HeroBanner />
+        <Map />
+        <AboveFooter />
+    </>
+);
 
-export default IndexPage
+export default IndexPage;

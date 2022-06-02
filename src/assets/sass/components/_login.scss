@@ -1,0 +1,34 @@
+.login-page {
+    .login-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20vh;
+
+        h5 {
+            margin-bottom: 40px;
+        }
+
+        .login button {
+            background-image: linear-gradient(to right, #0072ff 0%, #00c6ff 51%, #0072ff 100%);
+            margin: 10px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;
+            box-shadow: 0 0 20px #eee;
+    
+            display: block;
+    
+            &:hover {
+                background-position: right center;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+    }
+}

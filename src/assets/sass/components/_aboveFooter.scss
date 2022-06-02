@@ -1,0 +1,35 @@
+.aboveFooter {
+    background: rgb(255, 255, 255);
+
+    .wrapper {
+        
+        margin-bottom: 45px;
+        .logo-bottom {
+            opacity: 0.7;
+            margin-top: 50px;    
+            margin-bottom: -30px;
+            z-index: 0;
+            
+        }
+        .button {
+            background-image: linear-gradient(to right, #0098EE 0%, #0085F3  51%, #0072F8  100%);
+            &:hover{
+                opacity: 0.4;
+                cursor: pointer;
+            }
+        }
+        h4 {
+            z-index: 1;
+            
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 0;
+        
+    }
+    
+    
+    
+}

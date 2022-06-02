@@ -1,0 +1,160 @@
+.map-wrapper {
+    height: 80vh;
+    width: 100vw;;
+    position: relative;
+    overflow:hidden;
+    top: 0;
+    left: 0;
+
+    .map {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    .current-location-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .current-location-marker {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        background-color: rgba(92, 163, 255, 0.6);
+
+        display: grid;
+        place-items: center;
+
+        transform: translate(-50%, -50%);
+
+        .inner {
+
+            width: 16px;
+            height: 16px;
+            border-radius: 8px;
+            opacity: 1;
+            background-color: rgb(255, 255, 255);
+
+            display: grid;
+            place-items: center;
+
+            .inner {
+                width: 12px;
+                height: 12px;
+                border-radius: 6px;
+                opacity: 1;
+                background-color: rgb(81, 134, 236);
+            }
+        }
+    }
+
+    .marker-info {
+        border-radius: 4px;
+        background: $white;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        max-width: 100%;
+        margin: 20px;
+        width: 400px;
+        padding: 16px;
+        box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.24);
+        @include breakpoint(small down) {
+          margin: 12px;
+          width: calc(100% - 2*12px);
+        }
+        .exitBtn {
+          position: absolute;
+          top: -12px;
+          left: -12px;
+          width: 24px;
+          height: 24px;
+          border-radius: 99px;
+          background: $gradient;
+          color: white;
+          display: grid;
+          place-items: center;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        img {
+          position: absolute;
+          width: 200px;
+          height: auto;
+          top: 0;
+          right: 20px;
+          transform: translate(0, -55%);
+        }
+        .title-group {
+          .license {
+            color: $dark-gray;
+            margin-bottom: 4px;
+          }
+          .title {
+            font-weight: 600;
+            font-size: 20px;
+            @include breakpoint(medium) {
+              font-size: 22px;
+            }
+            margin-bottom: 1rem;
+          }
+        }
+        .button {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 0;
+          span {
+            font-weight: 500;
+          }
+        }
+        .stats {
+          display: flex;
+          margin-bottom: 1rem;
+          .stat {
+            &:not(:last-child) {
+              margin-right: 30px;
+              position: relative;
+
+              &:before {
+                content: '';
+                width: 1px;
+                top: 10%;
+                height: 80%;
+                position: absolute;
+                right: -15px;
+                background: $light-gray;
+                opacity: .5;
+              }
+            }
+            p:first-child {
+              color: $light-gray;
+            }
+            p:last-child {
+              font-weight: 600;
+              color: $dark-gray;
+            }
+            * {
+              margin: 0;
+            }
+          }
+        }
+    }
+
+    .marker {
+        width: 38px;
+        height: 51px;
+        transition: 0.2s ease-in-out;
+        transform: translate(-50%, -100%);
+        &:hover {
+            cursor: pointer;
+            transform: translate(-50%, -110%);
+        }
+    }
+}
