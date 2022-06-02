@@ -10,7 +10,6 @@ const Header = () => {
     const [user] = useAuthState(auth);
     const [menuActive, setMenuActive] = useState(false);
 
-
     return (
         <div id="masthead">
             <nav role="navigation">
@@ -22,9 +21,9 @@ const Header = () => {
             </nav>
             <div className={`burger-menu ${menuActive ? 'active' : ''}`}>
               <div className="exit" onClick={() => setMenuActive(!menuActive)}>X</div>
-              <Link to="/">Forside</Link>
-              <Link to="/guide">F.A.Q</Link>
-              <Link to="/profile">Min konto</Link>
+              <Link to="/" onClick={() => setMenuActive(false)}>Forside</Link>
+              <Link to="/guide" onClick={() => setMenuActive(false)}>F.A.Q</Link>
+              <Link to="/profile" onClick={() => setMenuActive(false)}>Min konto</Link>
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import { auth, logOut, getHistoryAndUserFromUUID } from "@services/firebase";
+import { auth, getHistoryAndUserFromUUID } from "@services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import React, { useEffect, useState } from "react";
 
