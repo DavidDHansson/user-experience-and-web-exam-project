@@ -7,8 +7,54 @@
   background: rgb(240, 240, 240);
   color: $black;
 
-  &.scroll {
-    color: $black;
+  .burger-menu {
+    position: fixed;
+    top: 0;
+    width: 450px;
+    height: 100%;
+    max-width: 100vw;
+    padding: 60px 30px;
+    background: $gradient;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    // default
+    transform: translate(-100%, 0);
+    transition: 350ms ease-in-out;
+
+    &.active {
+      transform: translate(0, 0);
+    }
+    .exit {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: white;
+      color: $gradient;
+      box-shadow: 0px 0px 12px rgba(0, 0, 0, .15);
+      transition: all 250ms ease-in-out;
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, .3);
+      }
+    }
+    a {
+      color: $white;
+      transition: all 200ms ease-in-out;
+      font-weight: 600;
+      font-size: 24px;
+      margin-bottom: 0.5rem;
+      opacity: .8;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 
   .inner {
